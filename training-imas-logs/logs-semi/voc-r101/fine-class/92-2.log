@@ -1,0 +1,1500 @@
+[08/31/2022 09:22:43][INFO] - {'criterion': {'kwargs': {'use_weight': False}, 'type': 'CELoss'},
+ 'dataset': {'ignore_label': 255,
+             'mean': [0.485, 0.456, 0.406],
+             'n_sup': 92,
+             'std': [0.229, 0.224, 0.225],
+             'train': {'batch_size': 4,
+                       'crop': {'size': [513, 513], 'type': 'rand'},
+                       'data_list': './data/splits/pascal/92/labeled.txt',
+                       'data_root': './data/VOC2012',
+                       'flip': True,
+                       'hardness_aware': {'flag_augs_mixup_by_hard': True,
+                                          'flag_cal_iou_ignore_bg': True,
+                                          'flag_cal_iou_weighted': True,
+                                          'flag_cmix_trigger_by_hard': True,
+                                          'flag_hardness_weighted_loss': True,
+                                          'flag_mapping_gaussian': False,
+                                          'flag_mapping_random': False,
+                                          'flag_using_v1': True},
+                       'rand_resize': [0.5, 2.0],
+                       'resize_base_size': 500,
+                       'strong_aug': {'num_augs': 2}},
+             'type': 'pascal_semi',
+             'val': {'batch_size': 1,
+                     'data_list': './data/splits/pascal/val.txt',
+                     'data_root': './data/VOC2012'},
+             'workers': 4},
+ 'exp_path': './exps/exp_vocs/voc_semi_fine92',
+ 'log_path': './exps/exp_vocs/voc_semi_fine92/log',
+ 'net': {'decoder': {'kwargs': {'dilations': [6, 12, 18],
+                                'inner_planes': 256,
+                                'low_conv_planes': 48,
+                                'rep_head': False},
+                     'type': 'u2pl.models.decoder.dec_deeplabv3_plus'},
+         'ema_decay': 0.996,
+         'encoder': {'kwargs': {'fpn': True,
+                                'multi_grid': True,
+                                'replace_stride_with_dilation': [False,
+                                                                 False,
+                                                                 True],
+                                'zero_init_residual': True},
+                     'pretrain': './pretrained/resnet101.pth',
+                     'type': 'u2pl.models.resnet.resnet101'},
+         'num_classes': 21,
+         'sync_bn': True},
+ 'save_path': './exps/exp_vocs/voc_semi_fine92/checkpoints',
+ 'saver': {'pretrain': '', 'snapshot_dir': 'checkpoints', 'use_tb': False},
+ 'trainer': {'epochs': 80,
+             'lr_scheduler': {'kwargs': {'power': 0.9}, 'mode': 'poly'},
+             'optimizer': {'kwargs': {'lr': 0.001,
+                                      'momentum': 0.9,
+                                      'weight_decay': 0.0001},
+                           'type': 'SGD'},
+             'sup_only_epoch': 0,
+             'unsupervised': {'flag_ema_pseudo': True,
+                              'loss_weight': 3.0,
+                              'threshold': 0.95,
+                              'use_cutmix': True,
+                              'use_cutmix_beta': False,
+                              'use_cutmix_range': [0.1, 0.9],
+                              'use_cutmix_trigger_prob': 0.5}}}
+[08/31/2022 09:22:45][INFO] - # samples: 92
+[08/31/2022 09:22:45][INFO] - # samples: 10490
+[08/31/2022 09:22:45][INFO] - # samples: 1449
+[08/31/2022 09:22:45][INFO] - Get loader Done...
+[08/31/2022 09:22:46][INFO] - -------------------------- start training --------------------------
+[08/31/2022 09:22:50][INFO] - Reducer buckets have been rebuilt in this iteration.
+[08/31/2022 09:25:31][INFO] - Epoch/Iter [80:  0/ 81].  AvgHard:0.603.  Sup:0.302(0.302)  Uns:0.044(0.046)  Pseudo:0.603(0.578)  Time:2.10  LR:0.00100
+[08/31/2022 09:28:22][INFO] - Epoch/Iter [80:  0/162].  AvgHard:0.564.  Sup:0.206(0.189)  Uns:0.030(0.079)  Pseudo:0.626(0.677)  Time:2.10  LR:0.00100
+[08/31/2022 09:31:13][INFO] - Epoch/Iter [80:  0/243].  AvgHard:0.756.  Sup:0.085(0.134)  Uns:0.064(0.095)  Pseudo:0.756(0.758)  Time:2.08  LR:0.00100
+[08/31/2022 09:34:04][INFO] - Epoch/Iter [80:  0/324].  AvgHard:0.671.  Sup:0.077(0.119)  Uns:0.078(0.133)  Pseudo:0.781(0.777)  Time:2.14  LR:0.00099
+[08/31/2022 09:36:55][INFO] - Epoch/Iter [80:  0/405].  AvgHard:0.768.  Sup:0.119(0.114)  Uns:0.098(0.123)  Pseudo:0.768(0.747)  Time:2.09  LR:0.00099
+[08/31/2022 09:39:45][INFO] - Epoch/Iter [80:  0/486].  AvgHard:0.787.  Sup:0.150(0.129)  Uns:0.204(0.098)  Pseudo:0.849(0.786)  Time:2.09  LR:0.00099
+[08/31/2022 09:42:39][INFO] - Epoch/Iter [80:  0/567].  AvgHard:0.858.  Sup:0.092(0.092)  Uns:0.096(0.145)  Pseudo:0.858(0.835)  Time:2.20  LR:0.00099
+[08/31/2022 09:45:44][INFO] - Epoch/Iter [80:  0/654].  AvgHard:0.744.  Sup:0.077(0.154)  Uns:0.142(0.131)  Pseudo:0.800(0.708)  Time:2.14  LR:0.00099
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [0] IoU 87.48
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [1] IoU 48.55
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [2] IoU 8.12
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [3] IoU 57.13
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [4] IoU 58.52
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [5] IoU 16.17
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [6] IoU 83.67
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [7] IoU 69.16
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [8] IoU 68.46
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [9] IoU 2.26
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [10] IoU 62.92
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [11] IoU 53.90
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [12] IoU 61.41
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [13] IoU 55.47
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [14] IoU 50.43
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [15] IoU 62.48
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [16] IoU 37.56
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [17] IoU 51.69
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [18] IoU 26.78
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [19] IoU 68.15
+[08/31/2022 09:46:09][INFO] -  [Test] -  class [20] IoU 7.29
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [0] IoU 87.48
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [1] IoU 48.55
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [2] IoU 8.12
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [3] IoU 57.13
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [4] IoU 58.52
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [5] IoU 16.17
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [6] IoU 83.67
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [7] IoU 69.16
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [8] IoU 68.46
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [9] IoU 2.26
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [10] IoU 62.92
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [11] IoU 53.90
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [12] IoU 61.41
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [13] IoU 55.47
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [14] IoU 50.43
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [15] IoU 62.48
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [16] IoU 37.56
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [17] IoU 51.69
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [18] IoU 26.78
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [19] IoU 68.15
+[08/31/2022 09:46:34][INFO] -  [Test] -  class [20] IoU 7.29
+[08/31/2022 09:46:37][INFO] -  <<Test>> - Epoch: 0.  MIoU: 49.41/49.41.  [34mBest-STU:49.41/0  [31mBest-EMA: 49.41/0[0m
+[08/31/2022 09:49:31][INFO] - Epoch/Iter [80:  1/ 81].  AvgHard:0.659.  Sup:0.084(0.069)  Uns:0.079(0.103)  Pseudo:0.859(0.823)  Time:2.09  LR:0.00099
+[08/31/2022 09:52:23][INFO] - Epoch/Iter [80:  1/162].  AvgHard:0.768.  Sup:0.040(0.058)  Uns:0.058(0.121)  Pseudo:0.884(0.840)  Time:2.11  LR:0.00099
+[08/31/2022 09:55:16][INFO] - Epoch/Iter [80:  1/243].  AvgHard:0.688.  Sup:0.071(0.055)  Uns:0.311(0.136)  Pseudo:0.799(0.839)  Time:2.16  LR:0.00098
+[08/31/2022 09:58:07][INFO] - Epoch/Iter [80:  1/324].  AvgHard:0.566.  Sup:0.073(0.045)  Uns:0.091(0.129)  Pseudo:0.768(0.844)  Time:2.13  LR:0.00098
+[08/31/2022 10:01:00][INFO] - Epoch/Iter [80:  1/405].  AvgHard:0.759.  Sup:0.047(0.043)  Uns:0.211(0.155)  Pseudo:0.844(0.858)  Time:2.15  LR:0.00098
+[08/31/2022 10:03:53][INFO] - Epoch/Iter [80:  1/486].  AvgHard:0.699.  Sup:0.090(0.046)  Uns:0.166(0.120)  Pseudo:0.856(0.846)  Time:2.15  LR:0.00098
+[08/31/2022 10:06:44][INFO] - Epoch/Iter [80:  1/567].  AvgHard:0.696.  Sup:0.052(0.042)  Uns:0.261(0.175)  Pseudo:0.822(0.834)  Time:2.12  LR:0.00098
+[08/31/2022 10:09:50][INFO] - Epoch/Iter [80:  1/654].  AvgHard:0.688.  Sup:0.035(0.039)  Uns:0.091(0.117)  Pseudo:0.903(0.869)  Time:2.11  LR:0.00098
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [0] IoU 89.77
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [1] IoU 72.27
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [2] IoU 31.50
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [3] IoU 81.28
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [4] IoU 69.94
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [5] IoU 32.82
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [6] IoU 86.14
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [7] IoU 79.60
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [8] IoU 82.78
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [9] IoU 2.96
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [10] IoU 75.73
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [11] IoU 57.41
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [12] IoU 64.75
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [13] IoU 74.05
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [14] IoU 63.51
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [15] IoU 68.32
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [16] IoU 48.78
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [17] IoU 68.87
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [18] IoU 27.75
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [19] IoU 73.04
+[08/31/2022 10:10:16][INFO] -  [Test] -  class [20] IoU 18.69
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [0] IoU 89.62
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [1] IoU 73.97
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [2] IoU 20.96
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [3] IoU 78.78
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [4] IoU 68.23
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [5] IoU 31.37
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [6] IoU 87.66
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [7] IoU 79.32
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [8] IoU 82.94
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [9] IoU 3.08
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [10] IoU 75.27
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [11] IoU 55.72
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [12] IoU 72.91
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [13] IoU 79.14
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [14] IoU 60.96
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [15] IoU 70.16
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [16] IoU 46.47
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [17] IoU 70.58
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [18] IoU 29.11
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [19] IoU 74.68
+[08/31/2022 10:10:40][INFO] -  [Test] -  class [20] IoU 10.17
+[08/31/2022 10:10:45][INFO] -  <<Test>> - Epoch: 1.  MIoU: 60.47/60.05.  [34mBest-STU:60.47/1  [31mBest-EMA: 60.05/1[0m
+[08/31/2022 10:13:41][INFO] - Epoch/Iter [80:  2/ 81].  AvgHard:0.773.  Sup:0.037(0.037)  Uns:0.174(0.140)  Pseudo:0.851(0.857)  Time:2.19  LR:0.00098
+[08/31/2022 10:16:31][INFO] - Epoch/Iter [80:  2/162].  AvgHard:0.733.  Sup:0.037(0.039)  Uns:0.203(0.162)  Pseudo:0.855(0.853)  Time:2.12  LR:0.00097
+[08/31/2022 10:19:21][INFO] - Epoch/Iter [80:  2/243].  AvgHard:0.772.  Sup:0.025(0.037)  Uns:0.078(0.146)  Pseudo:0.871(0.879)  Time:2.09  LR:0.00097
+[08/31/2022 10:22:11][INFO] - Epoch/Iter [80:  2/324].  AvgHard:0.765.  Sup:0.054(0.040)  Uns:0.100(0.111)  Pseudo:0.896(0.862)  Time:2.10  LR:0.00097
+[08/31/2022 10:25:03][INFO] - Epoch/Iter [80:  2/405].  AvgHard:0.76.  Sup:0.038(0.048)  Uns:0.245(0.154)  Pseudo:0.853(0.862)  Time:2.09  LR:0.00097
+[08/31/2022 10:27:53][INFO] - Epoch/Iter [80:  2/486].  AvgHard:0.609.  Sup:0.139(0.045)  Uns:0.043(0.179)  Pseudo:0.847(0.855)  Time:2.08  LR:0.00097
+[08/31/2022 10:30:44][INFO] - Epoch/Iter [80:  2/567].  AvgHard:0.652.  Sup:0.065(0.045)  Uns:0.710(0.228)  Pseudo:0.814(0.848)  Time:2.10  LR:0.00097
+[08/31/2022 10:33:47][INFO] - Epoch/Iter [80:  2/654].  AvgHard:0.755.  Sup:0.024(0.034)  Uns:0.236(0.114)  Pseudo:0.850(0.861)  Time:2.13  LR:0.00097
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [0] IoU 90.08
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [1] IoU 76.43
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [2] IoU 21.61
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [3] IoU 67.72
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [4] IoU 67.04
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [5] IoU 41.13
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [6] IoU 86.54
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [7] IoU 79.37
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [8] IoU 77.26
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [9] IoU 1.26
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [10] IoU 79.00
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [11] IoU 53.12
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [12] IoU 74.83
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [13] IoU 79.87
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [14] IoU 64.60
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [15] IoU 71.44
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [16] IoU 47.17
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [17] IoU 69.17
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [18] IoU 31.12
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [19] IoU 75.13
+[08/31/2022 10:34:11][INFO] -  [Test] -  class [20] IoU 21.98
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [0] IoU 90.19
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [1] IoU 80.01
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [2] IoU 24.45
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [3] IoU 72.67
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [4] IoU 69.53
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [5] IoU 37.71
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [6] IoU 87.32
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [7] IoU 79.20
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [8] IoU 85.17
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [9] IoU 1.66
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [10] IoU 81.81
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [11] IoU 56.67
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [12] IoU 78.43
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [13] IoU 86.24
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [14] IoU 64.23
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [15] IoU 72.79
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [16] IoU 49.32
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [17] IoU 73.82
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [18] IoU 30.04
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [19] IoU 75.65
+[08/31/2022 10:34:36][INFO] -  [Test] -  class [20] IoU 17.73
+[08/31/2022 10:34:41][INFO] -  <<Test>> - Epoch: 2.  MIoU: 60.76/62.60.  [34mBest-STU:60.76/2  [31mBest-EMA: 62.60/2[0m
+[08/31/2022 10:37:34][INFO] - Epoch/Iter [80:  3/ 81].  AvgHard:0.785.  Sup:0.025(0.033)  Uns:0.189(0.184)  Pseudo:0.882(0.873)  Time:2.08  LR:0.00096
+[08/31/2022 10:40:28][INFO] - Epoch/Iter [80:  3/162].  AvgHard:0.619.  Sup:0.026(0.036)  Uns:0.160(0.139)  Pseudo:0.871(0.862)  Time:2.15  LR:0.00096
+[08/31/2022 10:43:21][INFO] - Epoch/Iter [80:  3/243].  AvgHard:0.783.  Sup:0.060(0.039)  Uns:0.128(0.193)  Pseudo:0.865(0.857)  Time:2.18  LR:0.00096
+[08/31/2022 10:46:14][INFO] - Epoch/Iter [80:  3/324].  AvgHard:0.661.  Sup:0.027(0.031)  Uns:0.180(0.132)  Pseudo:0.859(0.884)  Time:2.14  LR:0.00096
+[08/31/2022 10:49:07][INFO] - Epoch/Iter [80:  3/405].  AvgHard:0.638.  Sup:0.014(0.031)  Uns:0.087(0.132)  Pseudo:0.849(0.877)  Time:2.12  LR:0.00096
+[08/31/2022 10:51:57][INFO] - Epoch/Iter [80:  3/486].  AvgHard:0.744.  Sup:0.023(0.033)  Uns:0.093(0.163)  Pseudo:0.863(0.870)  Time:2.08  LR:0.00096
+[08/31/2022 10:54:47][INFO] - Epoch/Iter [80:  3/567].  AvgHard:0.81.  Sup:0.043(0.036)  Uns:0.059(0.143)  Pseudo:0.917(0.870)  Time:2.11  LR:0.00096
+[08/31/2022 10:57:50][INFO] - Epoch/Iter [80:  3/654].  AvgHard:0.718.  Sup:0.024(0.030)  Uns:0.304(0.171)  Pseudo:0.916(0.888)  Time:2.09  LR:0.00095
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [0] IoU 90.81
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [1] IoU 80.71
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [2] IoU 25.11
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [3] IoU 75.95
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [4] IoU 68.04
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [5] IoU 60.01
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [6] IoU 82.36
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [7] IoU 81.43
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [8] IoU 85.61
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [9] IoU 1.06
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [10] IoU 86.66
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [11] IoU 52.18
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [12] IoU 76.96
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [13] IoU 84.73
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [14] IoU 71.24
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [15] IoU 75.81
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [16] IoU 39.23
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [17] IoU 73.10
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [18] IoU 33.01
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [19] IoU 72.88
+[08/31/2022 10:58:15][INFO] -  [Test] -  class [20] IoU 42.08
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [0] IoU 90.80
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [1] IoU 80.02
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [2] IoU 23.05
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [3] IoU 78.64
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [4] IoU 68.71
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [5] IoU 54.30
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [6] IoU 86.97
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [7] IoU 78.70
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [8] IoU 86.72
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [9] IoU 1.84
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [10] IoU 85.94
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [11] IoU 54.54
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [12] IoU 80.86
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [13] IoU 87.12
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [14] IoU 67.64
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [15] IoU 75.42
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [16] IoU 46.90
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [17] IoU 77.16
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [18] IoU 32.94
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [19] IoU 78.93
+[08/31/2022 10:58:39][INFO] -  [Test] -  class [20] IoU 39.51
+[08/31/2022 10:58:44][INFO] -  <<Test>> - Epoch: 3.  MIoU: 64.71/65.56.  [34mBest-STU:64.71/3  [31mBest-EMA: 65.56/3[0m
+[08/31/2022 11:01:35][INFO] - Epoch/Iter [80:  4/ 81].  AvgHard:0.793.  Sup:0.039(0.027)  Uns:0.200(0.146)  Pseudo:0.877(0.893)  Time:2.08  LR:0.00095
+[08/31/2022 11:04:24][INFO] - Epoch/Iter [80:  4/162].  AvgHard:0.724.  Sup:0.021(0.028)  Uns:0.021(0.118)  Pseudo:0.902(0.894)  Time:2.09  LR:0.00095
+[08/31/2022 11:07:14][INFO] - Epoch/Iter [80:  4/243].  AvgHard:0.788.  Sup:0.028(0.028)  Uns:0.096(0.170)  Pseudo:0.851(0.877)  Time:2.12  LR:0.00095
+[08/31/2022 11:10:06][INFO] - Epoch/Iter [80:  4/324].  AvgHard:0.842.  Sup:0.027(0.032)  Uns:0.231(0.174)  Pseudo:0.917(0.878)  Time:2.11  LR:0.00095
+[08/31/2022 11:12:59][INFO] - Epoch/Iter [80:  4/405].  AvgHard:0.828.  Sup:0.023(0.029)  Uns:0.050(0.176)  Pseudo:0.902(0.889)  Time:2.17  LR:0.00095
+[08/31/2022 11:15:50][INFO] - Epoch/Iter [80:  4/486].  AvgHard:0.697.  Sup:0.017(0.024)  Uns:0.104(0.135)  Pseudo:0.871(0.887)  Time:2.11  LR:0.00095
+[08/31/2022 11:18:43][INFO] - Epoch/Iter [80:  4/567].  AvgHard:0.753.  Sup:0.014(0.030)  Uns:0.046(0.133)  Pseudo:0.898(0.878)  Time:2.15  LR:0.00095
+[08/31/2022 11:21:50][INFO] - Epoch/Iter [80:  4/654].  AvgHard:0.823.  Sup:0.024(0.030)  Uns:0.130(0.159)  Pseudo:0.938(0.898)  Time:2.17  LR:0.00094
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [0] IoU 90.79
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [1] IoU 84.79
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [2] IoU 10.80
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [3] IoU 85.20
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [4] IoU 67.54
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [5] IoU 71.94
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [6] IoU 88.09
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [7] IoU 80.54
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [8] IoU 86.09
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [9] IoU 0.67
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [10] IoU 76.82
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [11] IoU 53.23
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [12] IoU 79.71
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [13] IoU 82.52
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [14] IoU 75.03
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [15] IoU 74.65
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [16] IoU 51.84
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [17] IoU 73.72
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [18] IoU 32.23
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [19] IoU 78.58
+[08/31/2022 11:22:15][INFO] -  [Test] -  class [20] IoU 53.34
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [0] IoU 91.13
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [1] IoU 83.92
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [2] IoU 15.36
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [3] IoU 84.53
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [4] IoU 67.98
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [5] IoU 69.28
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [6] IoU 88.66
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [7] IoU 81.67
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [8] IoU 88.40
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [9] IoU 1.31
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [10] IoU 84.92
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [11] IoU 56.17
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [12] IoU 82.91
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [13] IoU 87.63
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [14] IoU 75.39
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [15] IoU 76.09
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [16] IoU 48.99
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [17] IoU 81.14
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [18] IoU 34.13
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [19] IoU 80.78
+[08/31/2022 11:22:40][INFO] -  [Test] -  class [20] IoU 52.50
+[08/31/2022 11:22:45][INFO] -  <<Test>> - Epoch: 4.  MIoU: 66.58/68.23.  [34mBest-STU:66.58/4  [31mBest-EMA: 68.23/4[0m
+[08/31/2022 11:25:37][INFO] - Epoch/Iter [80:  5/ 81].  AvgHard:0.757.  Sup:0.026(0.026)  Uns:0.235(0.147)  Pseudo:0.892(0.895)  Time:2.13  LR:0.00094
+[08/31/2022 11:28:27][INFO] - Epoch/Iter [80:  5/162].  AvgHard:0.859.  Sup:0.024(0.027)  Uns:0.255(0.143)  Pseudo:0.909(0.887)  Time:2.14  LR:0.00094
+[08/31/2022 11:31:19][INFO] - Epoch/Iter [80:  5/243].  AvgHard:0.832.  Sup:0.017(0.024)  Uns:0.058(0.194)  Pseudo:0.952(0.895)  Time:2.12  LR:0.00094
+[08/31/2022 11:34:10][INFO] - Epoch/Iter [80:  5/324].  AvgHard:0.828.  Sup:0.018(0.024)  Uns:0.204(0.161)  Pseudo:0.929(0.901)  Time:2.10  LR:0.00094
+[08/31/2022 11:37:04][INFO] - Epoch/Iter [80:  5/405].  AvgHard:0.687.  Sup:0.031(0.025)  Uns:0.060(0.163)  Pseudo:0.891(0.892)  Time:2.16  LR:0.00094
+[08/31/2022 11:39:57][INFO] - Epoch/Iter [80:  5/486].  AvgHard:0.785.  Sup:0.030(0.027)  Uns:0.095(0.175)  Pseudo:0.896(0.891)  Time:2.12  LR:0.00094
+[08/31/2022 11:42:46][INFO] - Epoch/Iter [80:  5/567].  AvgHard:0.843.  Sup:0.017(0.022)  Uns:0.214(0.123)  Pseudo:0.920(0.915)  Time:2.13  LR:0.00093
+[08/31/2022 11:45:51][INFO] - Epoch/Iter [80:  5/654].  AvgHard:0.76.  Sup:0.022(0.024)  Uns:0.162(0.165)  Pseudo:0.861(0.892)  Time:2.12  LR:0.00093
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [0] IoU 90.82
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [1] IoU 78.76
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [2] IoU 8.38
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [3] IoU 84.40
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [4] IoU 66.46
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [5] IoU 59.46
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [6] IoU 87.68
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [7] IoU 78.20
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [8] IoU 88.36
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [9] IoU 0.88
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [10] IoU 81.04
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [11] IoU 54.29
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [12] IoU 83.56
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [13] IoU 82.06
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [14] IoU 64.76
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [15] IoU 75.83
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [16] IoU 49.82
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [17] IoU 77.60
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [18] IoU 37.12
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [19] IoU 78.99
+[08/31/2022 11:46:16][INFO] -  [Test] -  class [20] IoU 49.12
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [0] IoU 91.46
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [1] IoU 84.76
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [2] IoU 10.05
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [3] IoU 84.91
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [4] IoU 71.50
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [5] IoU 66.11
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [6] IoU 89.63
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [7] IoU 81.82
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [8] IoU 89.55
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [9] IoU 0.80
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [10] IoU 84.49
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [11] IoU 55.82
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [12] IoU 84.62
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [13] IoU 88.19
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [14] IoU 74.86
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [15] IoU 76.58
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [16] IoU 47.22
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [17] IoU 78.77
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [18] IoU 37.09
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [19] IoU 82.75
+[08/31/2022 11:46:41][INFO] -  [Test] -  class [20] IoU 52.61
+[08/31/2022 11:46:46][INFO] -  <<Test>> - Epoch: 5.  MIoU: 65.60/68.27.  [34mBest-STU:66.58/4  [31mBest-EMA: 68.27/5[0m
+[08/31/2022 11:49:41][INFO] - Epoch/Iter [80:  6/ 81].  AvgHard:0.741.  Sup:0.024(0.023)  Uns:0.166(0.168)  Pseudo:0.862(0.890)  Time:2.17  LR:0.00093
+[08/31/2022 11:52:33][INFO] - Epoch/Iter [80:  6/162].  AvgHard:0.766.  Sup:0.016(0.025)  Uns:0.092(0.156)  Pseudo:0.877(0.891)  Time:2.13  LR:0.00093
+[08/31/2022 11:55:25][INFO] - Epoch/Iter [80:  6/243].  AvgHard:0.768.  Sup:0.016(0.021)  Uns:0.092(0.152)  Pseudo:0.951(0.902)  Time:2.12  LR:0.00093
+[08/31/2022 11:58:16][INFO] - Epoch/Iter [80:  6/324].  AvgHard:0.831.  Sup:0.023(0.024)  Uns:0.146(0.173)  Pseudo:0.900(0.897)  Time:2.12  LR:0.00093
+[08/31/2022 12:01:09][INFO] - Epoch/Iter [80:  6/405].  AvgHard:0.862.  Sup:0.017(0.027)  Uns:0.143(0.145)  Pseudo:0.926(0.890)  Time:2.12  LR:0.00093
+[08/31/2022 12:04:02][INFO] - Epoch/Iter [80:  6/486].  AvgHard:0.67.  Sup:0.021(0.024)  Uns:0.244(0.165)  Pseudo:0.846(0.902)  Time:2.12  LR:0.00092
+[08/31/2022 12:06:52][INFO] - Epoch/Iter [80:  6/567].  AvgHard:0.715.  Sup:0.019(0.043)  Uns:0.166(0.129)  Pseudo:0.860(0.903)  Time:2.14  LR:0.00092
+[08/31/2022 12:09:59][INFO] - Epoch/Iter [80:  6/654].  AvgHard:0.848.  Sup:0.015(0.022)  Uns:0.128(0.130)  Pseudo:0.895(0.909)  Time:2.13  LR:0.00092
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [0] IoU 91.29
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [1] IoU 82.35
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [2] IoU 5.14
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [3] IoU 86.42
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [4] IoU 67.76
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [5] IoU 66.71
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [6] IoU 87.56
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [7] IoU 76.27
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [8] IoU 89.59
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [9] IoU 0.69
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [10] IoU 89.01
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [11] IoU 53.77
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [12] IoU 83.65
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [13] IoU 87.38
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [14] IoU 66.78
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [15] IoU 77.73
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [16] IoU 45.10
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [17] IoU 81.64
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [18] IoU 35.94
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [19] IoU 74.17
+[08/31/2022 12:10:25][INFO] -  [Test] -  class [20] IoU 47.96
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [0] IoU 91.55
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [1] IoU 85.91
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [2] IoU 6.09
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [3] IoU 86.97
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [4] IoU 71.48
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [5] IoU 67.38
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [6] IoU 90.91
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [7] IoU 83.52
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [8] IoU 90.73
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [9] IoU 0.87
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [10] IoU 88.31
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [11] IoU 54.60
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [12] IoU 86.26
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [13] IoU 87.60
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [14] IoU 72.23
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [15] IoU 77.32
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [16] IoU 47.62
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [17] IoU 82.68
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [18] IoU 37.35
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [19] IoU 82.88
+[08/31/2022 12:10:50][INFO] -  [Test] -  class [20] IoU 49.91
+[08/31/2022 12:10:55][INFO] -  <<Test>> - Epoch: 6.  MIoU: 66.52/68.67.  [34mBest-STU:66.58/4  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 12:13:47][INFO] - Epoch/Iter [80:  7/ 81].  AvgHard:0.651.  Sup:0.018(0.021)  Uns:0.106(0.173)  Pseudo:0.895(0.895)  Time:2.08  LR:0.00092
+[08/31/2022 12:16:39][INFO] - Epoch/Iter [80:  7/162].  AvgHard:0.811.  Sup:0.012(0.022)  Uns:0.146(0.171)  Pseudo:0.896(0.912)  Time:2.10  LR:0.00092
+[08/31/2022 12:19:29][INFO] - Epoch/Iter [80:  7/243].  AvgHard:0.76.  Sup:0.015(0.031)  Uns:0.121(0.174)  Pseudo:0.874(0.898)  Time:2.08  LR:0.00092
+[08/31/2022 12:22:21][INFO] - Epoch/Iter [80:  7/324].  AvgHard:0.836.  Sup:0.036(0.025)  Uns:0.184(0.153)  Pseudo:0.907(0.917)  Time:2.10  LR:0.00092
+[08/31/2022 12:25:13][INFO] - Epoch/Iter [80:  7/405].  AvgHard:0.723.  Sup:0.018(0.029)  Uns:0.125(0.192)  Pseudo:0.907(0.880)  Time:2.17  LR:0.00091
+[08/31/2022 12:28:02][INFO] - Epoch/Iter [80:  7/486].  AvgHard:0.666.  Sup:0.026(0.021)  Uns:0.112(0.171)  Pseudo:0.868(0.903)  Time:2.08  LR:0.00091
+[08/31/2022 12:30:53][INFO] - Epoch/Iter [80:  7/567].  AvgHard:0.866.  Sup:0.013(0.017)  Uns:0.158(0.124)  Pseudo:0.919(0.904)  Time:2.10  LR:0.00091
+[08/31/2022 12:33:56][INFO] - Epoch/Iter [80:  7/654].  AvgHard:0.876.  Sup:0.014(0.019)  Uns:0.076(0.163)  Pseudo:0.937(0.910)  Time:2.15  LR:0.00091
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [0] IoU 90.90
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [1] IoU 87.53
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [2] IoU 3.96
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [3] IoU 83.07
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [4] IoU 71.45
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [5] IoU 60.76
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [6] IoU 88.12
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [7] IoU 83.04
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [8] IoU 89.01
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [9] IoU 0.35
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [10] IoU 59.79
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [11] IoU 49.23
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [12] IoU 80.70
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [13] IoU 68.91
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [14] IoU 72.39
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [15] IoU 75.42
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [16] IoU 40.72
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [17] IoU 79.51
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [18] IoU 38.30
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [19] IoU 81.88
+[08/31/2022 12:34:22][INFO] -  [Test] -  class [20] IoU 48.95
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [0] IoU 91.25
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [1] IoU 85.82
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [2] IoU 5.68
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [3] IoU 86.95
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [4] IoU 72.36
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [5] IoU 64.35
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [6] IoU 89.01
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [7] IoU 83.80
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [8] IoU 90.40
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [9] IoU 0.45
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [10] IoU 88.41
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [11] IoU 51.79
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [12] IoU 84.57
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [13] IoU 86.51
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [14] IoU 71.98
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [15] IoU 76.20
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [16] IoU 44.20
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [17] IoU 80.36
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [18] IoU 38.19
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [19] IoU 83.15
+[08/31/2022 12:34:47][INFO] -  [Test] -  class [20] IoU 48.49
+[08/31/2022 12:34:49][INFO] -  <<Test>> - Epoch: 7.  MIoU: 64.48/67.81.  [34mBest-STU:66.58/4  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 12:37:44][INFO] - Epoch/Iter [80:  8/ 81].  AvgHard:0.746.  Sup:0.025(0.020)  Uns:0.178(0.179)  Pseudo:0.918(0.902)  Time:2.08  LR:0.00091
+[08/31/2022 12:40:36][INFO] - Epoch/Iter [80:  8/162].  AvgHard:0.683.  Sup:0.015(0.020)  Uns:0.055(0.144)  Pseudo:0.919(0.900)  Time:2.15  LR:0.00091
+[08/31/2022 12:43:26][INFO] - Epoch/Iter [80:  8/243].  AvgHard:0.724.  Sup:0.016(0.017)  Uns:0.165(0.149)  Pseudo:0.942(0.917)  Time:2.14  LR:0.00091
+[08/31/2022 12:46:16][INFO] - Epoch/Iter [80:  8/324].  AvgHard:0.889.  Sup:0.016(0.020)  Uns:0.069(0.137)  Pseudo:0.946(0.923)  Time:2.11  LR:0.00090
+[08/31/2022 12:49:07][INFO] - Epoch/Iter [80:  8/405].  AvgHard:0.819.  Sup:0.069(0.023)  Uns:0.139(0.130)  Pseudo:0.923(0.905)  Time:2.09  LR:0.00090
+[08/31/2022 12:51:58][INFO] - Epoch/Iter [80:  8/486].  AvgHard:0.786.  Sup:0.027(0.017)  Uns:0.067(0.119)  Pseudo:0.892(0.917)  Time:2.10  LR:0.00090
+[08/31/2022 12:54:47][INFO] - Epoch/Iter [80:  8/567].  AvgHard:0.788.  Sup:0.018(0.019)  Uns:0.289(0.142)  Pseudo:0.885(0.916)  Time:2.08  LR:0.00090
+[08/31/2022 12:57:52][INFO] - Epoch/Iter [80:  8/654].  AvgHard:0.792.  Sup:0.026(0.019)  Uns:0.062(0.179)  Pseudo:0.926(0.911)  Time:2.13  LR:0.00090
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [0] IoU 90.56
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [1] IoU 86.60
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [2] IoU 4.74
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [3] IoU 84.83
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [4] IoU 67.22
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [5] IoU 56.54
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [6] IoU 88.72
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [7] IoU 81.29
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [8] IoU 87.67
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [9] IoU 0.42
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [10] IoU 83.50
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [11] IoU 50.08
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [12] IoU 80.86
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [13] IoU 86.88
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [14] IoU 73.02
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [15] IoU 71.96
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [16] IoU 43.34
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [17] IoU 72.52
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [18] IoU 39.07
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [19] IoU 81.90
+[08/31/2022 12:58:17][INFO] -  [Test] -  class [20] IoU 50.26
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [0] IoU 91.24
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [1] IoU 85.89
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [2] IoU 5.17
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [3] IoU 88.31
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [4] IoU 72.34
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [5] IoU 62.07
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [6] IoU 88.04
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [7] IoU 83.98
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [8] IoU 89.60
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [9] IoU 0.33
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [10] IoU 89.06
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [11] IoU 53.74
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [12] IoU 85.91
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [13] IoU 86.75
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [14] IoU 75.44
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [15] IoU 74.49
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [16] IoU 44.70
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [17] IoU 80.57
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [18] IoU 38.11
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [19] IoU 82.53
+[08/31/2022 12:58:42][INFO] -  [Test] -  class [20] IoU 49.61
+[08/31/2022 12:58:44][INFO] -  <<Test>> - Epoch: 8.  MIoU: 65.81/67.99.  [34mBest-STU:66.58/4  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 13:01:38][INFO] - Epoch/Iter [80:  9/ 81].  AvgHard:0.898.  Sup:0.013(0.018)  Uns:0.215(0.152)  Pseudo:0.940(0.918)  Time:2.10  LR:0.00090
+[08/31/2022 13:04:31][INFO] - Epoch/Iter [80:  9/162].  AvgHard:0.857.  Sup:0.015(0.018)  Uns:0.112(0.150)  Pseudo:0.900(0.914)  Time:2.15  LR:0.00090
+[08/31/2022 13:07:22][INFO] - Epoch/Iter [80:  9/243].  AvgHard:0.868.  Sup:0.019(0.018)  Uns:0.248(0.168)  Pseudo:0.930(0.906)  Time:2.09  LR:0.00089
+[08/31/2022 13:10:14][INFO] - Epoch/Iter [80:  9/324].  AvgHard:0.8.  Sup:0.019(0.019)  Uns:0.225(0.165)  Pseudo:0.889(0.902)  Time:2.16  LR:0.00089
+[08/31/2022 13:13:07][INFO] - Epoch/Iter [80:  9/405].  AvgHard:0.808.  Sup:0.019(0.017)  Uns:0.312(0.137)  Pseudo:0.916(0.897)  Time:2.11  LR:0.00089
+[08/31/2022 13:16:00][INFO] - Epoch/Iter [80:  9/486].  AvgHard:0.84.  Sup:0.017(0.019)  Uns:0.188(0.155)  Pseudo:0.913(0.907)  Time:2.14  LR:0.00089
+[08/31/2022 13:18:51][INFO] - Epoch/Iter [80:  9/567].  AvgHard:0.843.  Sup:0.013(0.019)  Uns:0.101(0.172)  Pseudo:0.947(0.910)  Time:2.08  LR:0.00089
+[08/31/2022 13:21:57][INFO] - Epoch/Iter [80:  9/654].  AvgHard:0.75.  Sup:0.022(0.018)  Uns:0.082(0.135)  Pseudo:0.929(0.916)  Time:2.10  LR:0.00089
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [0] IoU 90.96
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [1] IoU 83.55
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [2] IoU 5.89
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [3] IoU 86.75
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [4] IoU 69.96
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [5] IoU 65.97
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [6] IoU 84.48
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [7] IoU 76.25
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [8] IoU 89.92
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [9] IoU 0.63
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [10] IoU 89.63
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [11] IoU 54.30
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [12] IoU 86.78
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [13] IoU 85.03
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [14] IoU 71.90
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [15] IoU 76.91
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [16] IoU 50.40
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [17] IoU 79.75
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [18] IoU 35.77
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [19] IoU 80.90
+[08/31/2022 13:22:22][INFO] -  [Test] -  class [20] IoU 49.93
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [0] IoU 91.16
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [1] IoU 83.75
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [2] IoU 6.72
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [3] IoU 88.78
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [4] IoU 70.89
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [5] IoU 62.76
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [6] IoU 89.98
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [7] IoU 81.28
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [8] IoU 89.97
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [9] IoU 0.53
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [10] IoU 90.13
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [11] IoU 53.66
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [12] IoU 87.52
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [13] IoU 87.83
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [14] IoU 74.95
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [15] IoU 74.27
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [16] IoU 48.05
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [17] IoU 82.18
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [18] IoU 37.06
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [19] IoU 83.16
+[08/31/2022 13:22:47][INFO] -  [Test] -  class [20] IoU 47.61
+[08/31/2022 13:22:49][INFO] -  <<Test>> - Epoch: 9.  MIoU: 67.41/68.20.  [34mBest-STU:67.41/9  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 13:25:44][INFO] - Epoch/Iter [80: 10/ 81].  AvgHard:0.881.  Sup:0.016(0.016)  Uns:0.066(0.134)  Pseudo:0.935(0.915)  Time:2.16  LR:0.00089
+[08/31/2022 13:28:35][INFO] - Epoch/Iter [80: 10/162].  AvgHard:0.708.  Sup:0.020(0.074)  Uns:0.176(0.212)  Pseudo:0.844(0.878)  Time:2.07  LR:0.00088
+[08/31/2022 13:31:26][INFO] - Epoch/Iter [80: 10/243].  AvgHard:0.619.  Sup:0.017(0.021)  Uns:0.133(0.161)  Pseudo:0.890(0.903)  Time:2.18  LR:0.00088
+[08/31/2022 13:34:17][INFO] - Epoch/Iter [80: 10/324].  AvgHard:0.83.  Sup:0.024(0.017)  Uns:0.141(0.137)  Pseudo:0.871(0.917)  Time:2.13  LR:0.00088
+[08/31/2022 13:37:08][INFO] - Epoch/Iter [80: 10/405].  AvgHard:0.83.  Sup:0.016(0.017)  Uns:0.072(0.115)  Pseudo:0.932(0.920)  Time:2.13  LR:0.00088
+[08/31/2022 13:39:59][INFO] - Epoch/Iter [80: 10/486].  AvgHard:0.77.  Sup:0.018(0.017)  Uns:0.150(0.131)  Pseudo:0.876(0.915)  Time:2.10  LR:0.00088
+[08/31/2022 13:42:51][INFO] - Epoch/Iter [80: 10/567].  AvgHard:0.83.  Sup:0.031(0.018)  Uns:0.117(0.122)  Pseudo:0.928(0.931)  Time:2.11  LR:0.00088
+[08/31/2022 13:45:56][INFO] - Epoch/Iter [80: 10/654].  AvgHard:0.763.  Sup:0.016(0.018)  Uns:0.104(0.140)  Pseudo:0.928(0.912)  Time:2.10  LR:0.00088
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [0] IoU 91.60
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [1] IoU 86.21
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [2] IoU 6.76
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [3] IoU 87.49
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [4] IoU 69.02
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [5] IoU 63.87
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [6] IoU 87.89
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [7] IoU 77.53
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [8] IoU 89.48
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [9] IoU 0.38
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [10] IoU 89.96
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [11] IoU 52.04
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [12] IoU 85.34
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [13] IoU 87.08
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [14] IoU 76.41
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [15] IoU 75.76
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [16] IoU 55.10
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [17] IoU 80.62
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [18] IoU 40.78
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [19] IoU 82.07
+[08/31/2022 13:46:21][INFO] -  [Test] -  class [20] IoU 43.86
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [0] IoU 91.30
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [1] IoU 87.71
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [2] IoU 6.15
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [3] IoU 88.56
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [4] IoU 70.81
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [5] IoU 62.08
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [6] IoU 88.61
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [7] IoU 78.40
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [8] IoU 90.65
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [9] IoU 0.69
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [10] IoU 89.84
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [11] IoU 53.59
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [12] IoU 85.04
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [13] IoU 88.25
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [14] IoU 74.30
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [15] IoU 74.68
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [16] IoU 49.51
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [17] IoU 85.94
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [18] IoU 39.02
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [19] IoU 82.92
+[08/31/2022 13:46:46][INFO] -  [Test] -  class [20] IoU 47.29
+[08/31/2022 13:46:48][INFO] -  <<Test>> - Epoch: 10.  MIoU: 68.06/68.35.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 13:49:41][INFO] - Epoch/Iter [80: 11/ 81].  AvgHard:0.828.  Sup:0.008(0.017)  Uns:0.213(0.141)  Pseudo:0.910(0.914)  Time:2.11  LR:0.00087
+[08/31/2022 13:52:32][INFO] - Epoch/Iter [80: 11/162].  AvgHard:0.774.  Sup:0.012(0.017)  Uns:0.066(0.133)  Pseudo:0.883(0.910)  Time:2.09  LR:0.00087
+[08/31/2022 13:55:22][INFO] - Epoch/Iter [80: 11/243].  AvgHard:0.888.  Sup:0.014(0.015)  Uns:0.174(0.141)  Pseudo:0.937(0.915)  Time:2.10  LR:0.00087
+[08/31/2022 13:58:14][INFO] - Epoch/Iter [80: 11/324].  AvgHard:0.831.  Sup:0.024(0.018)  Uns:0.121(0.149)  Pseudo:0.908(0.917)  Time:2.14  LR:0.00087
+[08/31/2022 14:01:04][INFO] - Epoch/Iter [80: 11/405].  AvgHard:0.89.  Sup:0.021(0.016)  Uns:0.402(0.155)  Pseudo:0.942(0.906)  Time:2.10  LR:0.00087
+[08/31/2022 14:03:53][INFO] - Epoch/Iter [80: 11/486].  AvgHard:0.81.  Sup:0.014(0.016)  Uns:0.048(0.131)  Pseudo:0.918(0.920)  Time:2.10  LR:0.00087
+[08/31/2022 14:06:46][INFO] - Epoch/Iter [80: 11/567].  AvgHard:0.881.  Sup:0.029(0.016)  Uns:0.120(0.120)  Pseudo:0.925(0.910)  Time:2.19  LR:0.00087
+[08/31/2022 14:09:50][INFO] - Epoch/Iter [80: 11/654].  AvgHard:0.873.  Sup:0.015(0.017)  Uns:0.195(0.152)  Pseudo:0.938(0.917)  Time:2.12  LR:0.00086
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [0] IoU 90.87
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [1] IoU 87.78
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [2] IoU 2.96
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [3] IoU 87.07
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [4] IoU 74.39
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [5] IoU 67.64
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [6] IoU 90.98
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [7] IoU 79.66
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [8] IoU 91.01
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [9] IoU 0.26
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [10] IoU 91.08
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [11] IoU 51.78
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [12] IoU 83.53
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [13] IoU 87.41
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [14] IoU 77.74
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [15] IoU 76.91
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [16] IoU 44.04
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [17] IoU 82.21
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [18] IoU 34.91
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [19] IoU 81.71
+[08/31/2022 14:10:15][INFO] -  [Test] -  class [20] IoU 42.03
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [0] IoU 91.04
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [1] IoU 87.45
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [2] IoU 6.19
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [3] IoU 88.42
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [4] IoU 71.71
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [5] IoU 65.76
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [6] IoU 90.34
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [7] IoU 78.54
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [8] IoU 90.80
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [9] IoU 0.46
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [10] IoU 89.22
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [11] IoU 53.38
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [12] IoU 85.45
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [13] IoU 87.67
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [14] IoU 77.19
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [15] IoU 75.02
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [16] IoU 48.04
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [17] IoU 85.06
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [18] IoU 36.03
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [19] IoU 82.66
+[08/31/2022 14:10:41][INFO] -  [Test] -  class [20] IoU 46.94
+[08/31/2022 14:10:43][INFO] -  <<Test>> - Epoch: 11.  MIoU: 67.90/68.45.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 14:13:37][INFO] - Epoch/Iter [80: 12/ 81].  AvgHard:0.897.  Sup:0.013(0.015)  Uns:0.104(0.161)  Pseudo:0.938(0.921)  Time:2.12  LR:0.00086
+[08/31/2022 14:16:28][INFO] - Epoch/Iter [80: 12/162].  AvgHard:0.838.  Sup:0.016(0.015)  Uns:0.086(0.147)  Pseudo:0.941(0.919)  Time:2.14  LR:0.00086
+[08/31/2022 14:19:17][INFO] - Epoch/Iter [80: 12/243].  AvgHard:0.832.  Sup:0.016(0.016)  Uns:0.061(0.145)  Pseudo:0.920(0.922)  Time:2.09  LR:0.00086
+[08/31/2022 14:22:11][INFO] - Epoch/Iter [80: 12/324].  AvgHard:0.894.  Sup:0.017(0.016)  Uns:0.561(0.136)  Pseudo:0.942(0.927)  Time:2.14  LR:0.00086
+[08/31/2022 14:25:05][INFO] - Epoch/Iter [80: 12/405].  AvgHard:0.839.  Sup:0.015(0.015)  Uns:0.165(0.141)  Pseudo:0.918(0.923)  Time:2.12  LR:0.00086
+[08/31/2022 14:27:57][INFO] - Epoch/Iter [80: 12/486].  AvgHard:0.781.  Sup:0.018(0.016)  Uns:0.186(0.172)  Pseudo:0.936(0.915)  Time:2.16  LR:0.00086
+[08/31/2022 14:30:48][INFO] - Epoch/Iter [80: 12/567].  AvgHard:0.864.  Sup:0.018(0.017)  Uns:0.126(0.131)  Pseudo:0.926(0.919)  Time:2.08  LR:0.00085
+[08/31/2022 14:33:52][INFO] - Epoch/Iter [80: 12/654].  AvgHard:0.802.  Sup:0.019(0.015)  Uns:0.095(0.139)  Pseudo:0.910(0.922)  Time:2.14  LR:0.00085
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [0] IoU 91.15
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [1] IoU 88.55
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [2] IoU 4.12
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [3] IoU 87.84
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [4] IoU 68.78
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [5] IoU 67.10
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [6] IoU 89.15
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [7] IoU 80.10
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [8] IoU 89.38
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [9] IoU 0.35
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [10] IoU 84.45
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [11] IoU 46.76
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [12] IoU 84.26
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [13] IoU 84.01
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [14] IoU 78.50
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [15] IoU 76.22
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [16] IoU 39.87
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [17] IoU 77.93
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [18] IoU 39.82
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [19] IoU 83.55
+[08/31/2022 14:34:17][INFO] -  [Test] -  class [20] IoU 41.42
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [0] IoU 91.11
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [1] IoU 84.85
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [2] IoU 5.06
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [3] IoU 88.82
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [4] IoU 71.01
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [5] IoU 65.61
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [6] IoU 89.91
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [7] IoU 81.96
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [8] IoU 90.42
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [9] IoU 0.24
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [10] IoU 89.73
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [11] IoU 52.53
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [12] IoU 85.38
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [13] IoU 88.43
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [14] IoU 78.98
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [15] IoU 75.41
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [16] IoU 46.14
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [17] IoU 85.03
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [18] IoU 36.77
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [19] IoU 82.83
+[08/31/2022 14:34:42][INFO] -  [Test] -  class [20] IoU 43.41
+[08/31/2022 14:34:44][INFO] -  <<Test>> - Epoch: 12.  MIoU: 66.82/68.27.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 14:37:39][INFO] - Epoch/Iter [80: 13/ 81].  AvgHard:0.83.  Sup:0.012(0.013)  Uns:0.098(0.104)  Pseudo:0.921(0.926)  Time:2.11  LR:0.00085
+[08/31/2022 14:40:33][INFO] - Epoch/Iter [80: 13/162].  AvgHard:0.817.  Sup:0.022(0.015)  Uns:0.039(0.126)  Pseudo:0.922(0.936)  Time:2.12  LR:0.00085
+[08/31/2022 14:43:25][INFO] - Epoch/Iter [80: 13/243].  AvgHard:0.809.  Sup:0.017(0.014)  Uns:0.121(0.109)  Pseudo:0.913(0.926)  Time:2.09  LR:0.00085
+[08/31/2022 14:46:18][INFO] - Epoch/Iter [80: 13/324].  AvgHard:0.846.  Sup:0.012(0.014)  Uns:0.094(0.106)  Pseudo:0.915(0.930)  Time:2.14  LR:0.00085
+[08/31/2022 14:49:11][INFO] - Epoch/Iter [80: 13/405].  AvgHard:0.876.  Sup:0.012(0.024)  Uns:0.071(0.112)  Pseudo:0.952(0.921)  Time:2.13  LR:0.00085
+[08/31/2022 14:52:06][INFO] - Epoch/Iter [80: 13/486].  AvgHard:0.752.  Sup:0.016(0.015)  Uns:0.087(0.108)  Pseudo:0.941(0.928)  Time:2.17  LR:0.00084
+[08/31/2022 14:54:59][INFO] - Epoch/Iter [80: 13/567].  AvgHard:0.779.  Sup:0.006(0.016)  Uns:0.098(0.127)  Pseudo:0.872(0.922)  Time:2.12  LR:0.00084
+[08/31/2022 14:58:01][INFO] - Epoch/Iter [80: 13/654].  AvgHard:0.778.  Sup:0.018(0.013)  Uns:0.118(0.169)  Pseudo:0.943(0.924)  Time:2.07  LR:0.00084
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [0] IoU 91.95
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [1] IoU 82.95
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [2] IoU 3.53
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [3] IoU 89.43
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [4] IoU 74.10
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [5] IoU 62.58
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [6] IoU 88.13
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [7] IoU 76.91
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [8] IoU 89.07
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [9] IoU 0.61
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [10] IoU 80.63
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [11] IoU 54.19
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [12] IoU 72.58
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [13] IoU 75.24
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [14] IoU 77.95
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [15] IoU 76.58
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [16] IoU 47.90
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [17] IoU 86.00
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [18] IoU 41.59
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [19] IoU 81.72
+[08/31/2022 14:58:26][INFO] -  [Test] -  class [20] IoU 40.36
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [0] IoU 91.28
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [1] IoU 88.98
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [2] IoU 3.79
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [3] IoU 88.32
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [4] IoU 74.13
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [5] IoU 63.70
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [6] IoU 88.39
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [7] IoU 78.67
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [8] IoU 91.17
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [9] IoU 0.28
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [10] IoU 90.59
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [11] IoU 53.40
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [12] IoU 85.44
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [13] IoU 88.14
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [14] IoU 79.40
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [15] IoU 76.60
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [16] IoU 44.30
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [17] IoU 85.32
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [18] IoU 36.63
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [19] IoU 82.18
+[08/31/2022 14:58:51][INFO] -  [Test] -  class [20] IoU 42.64
+[08/31/2022 14:58:54][INFO] -  <<Test>> - Epoch: 13.  MIoU: 66.38/68.25.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 15:01:49][INFO] - Epoch/Iter [80: 14/ 81].  AvgHard:0.764.  Sup:0.013(0.013)  Uns:0.446(0.150)  Pseudo:0.817(0.924)  Time:2.13  LR:0.00084
+[08/31/2022 15:04:41][INFO] - Epoch/Iter [80: 14/162].  AvgHard:0.867.  Sup:0.013(0.015)  Uns:0.208(0.127)  Pseudo:0.950(0.915)  Time:2.13  LR:0.00084
+[08/31/2022 15:07:34][INFO] - Epoch/Iter [80: 14/243].  AvgHard:0.791.  Sup:0.009(0.014)  Uns:0.247(0.155)  Pseudo:0.889(0.912)  Time:2.17  LR:0.00084
+[08/31/2022 15:10:26][INFO] - Epoch/Iter [80: 14/324].  AvgHard:0.843.  Sup:0.018(0.013)  Uns:0.121(0.122)  Pseudo:0.927(0.921)  Time:2.09  LR:0.00084
+[08/31/2022 15:13:18][INFO] - Epoch/Iter [80: 14/405].  AvgHard:0.782.  Sup:0.012(0.015)  Uns:0.084(0.124)  Pseudo:0.894(0.926)  Time:2.14  LR:0.00083
+[08/31/2022 15:16:11][INFO] - Epoch/Iter [80: 14/486].  AvgHard:0.799.  Sup:0.022(0.013)  Uns:0.128(0.131)  Pseudo:0.889(0.916)  Time:2.14  LR:0.00083
+[08/31/2022 15:19:03][INFO] - Epoch/Iter [80: 14/567].  AvgHard:0.835.  Sup:0.012(0.015)  Uns:0.101(0.099)  Pseudo:0.918(0.926)  Time:2.13  LR:0.00083
+[08/31/2022 15:22:12][INFO] - Epoch/Iter [80: 14/654].  AvgHard:0.909.  Sup:0.007(0.013)  Uns:0.148(0.102)  Pseudo:0.953(0.937)  Time:2.20  LR:0.00083
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [0] IoU 91.94
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [1] IoU 86.98
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [2] IoU 4.89
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [3] IoU 88.10
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [4] IoU 70.72
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [5] IoU 71.97
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [6] IoU 91.02
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [7] IoU 76.72
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [8] IoU 87.84
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [9] IoU 0.86
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [10] IoU 87.78
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [11] IoU 51.22
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [12] IoU 84.45
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [13] IoU 86.39
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [14] IoU 79.51
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [15] IoU 77.26
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [16] IoU 52.49
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [17] IoU 80.40
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [18] IoU 40.64
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [19] IoU 80.73
+[08/31/2022 15:22:37][INFO] -  [Test] -  class [20] IoU 33.60
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [0] IoU 91.52
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [1] IoU 88.01
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [2] IoU 3.99
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [3] IoU 88.82
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [4] IoU 72.27
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [5] IoU 66.88
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [6] IoU 88.51
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [7] IoU 76.73
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [8] IoU 89.81
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [9] IoU 0.93
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [10] IoU 88.62
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [11] IoU 51.15
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [12] IoU 84.64
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [13] IoU 86.53
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [14] IoU 76.91
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [15] IoU 76.65
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [16] IoU 48.86
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [17] IoU 82.09
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [18] IoU 38.66
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [19] IoU 84.36
+[08/31/2022 15:23:02][INFO] -  [Test] -  class [20] IoU 40.56
+[08/31/2022 15:23:04][INFO] -  <<Test>> - Epoch: 14.  MIoU: 67.88/67.93.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 15:26:00][INFO] - Epoch/Iter [80: 15/ 81].  AvgHard:0.862.  Sup:0.023(0.015)  Uns:0.098(0.144)  Pseudo:0.955(0.923)  Time:2.11  LR:0.00083
+[08/31/2022 15:28:53][INFO] - Epoch/Iter [80: 15/162].  AvgHard:0.797.  Sup:0.010(0.012)  Uns:0.119(0.120)  Pseudo:0.920(0.924)  Time:2.15  LR:0.00083
+[08/31/2022 15:31:47][INFO] - Epoch/Iter [80: 15/243].  AvgHard:0.825.  Sup:0.013(0.016)  Uns:0.087(0.138)  Pseudo:0.920(0.922)  Time:2.18  LR:0.00083
+[08/31/2022 15:34:41][INFO] - Epoch/Iter [80: 15/324].  AvgHard:0.804.  Sup:0.007(0.014)  Uns:0.181(0.161)  Pseudo:0.842(0.919)  Time:2.15  LR:0.00082
+[08/31/2022 15:37:34][INFO] - Epoch/Iter [80: 15/405].  AvgHard:0.863.  Sup:0.013(0.013)  Uns:0.104(0.112)  Pseudo:0.944(0.932)  Time:2.22  LR:0.00082
+[08/31/2022 15:40:26][INFO] - Epoch/Iter [80: 15/486].  AvgHard:0.864.  Sup:0.021(0.012)  Uns:0.136(0.100)  Pseudo:0.906(0.924)  Time:2.11  LR:0.00082
+[08/31/2022 15:43:16][INFO] - Epoch/Iter [80: 15/567].  AvgHard:0.749.  Sup:0.018(0.013)  Uns:0.138(0.135)  Pseudo:0.902(0.923)  Time:2.09  LR:0.00082
+[08/31/2022 15:46:21][INFO] - Epoch/Iter [80: 15/654].  AvgHard:0.779.  Sup:0.021(0.014)  Uns:0.411(0.120)  Pseudo:0.893(0.931)  Time:2.10  LR:0.00082
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [0] IoU 91.33
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [1] IoU 84.43
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [2] IoU 4.47
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [3] IoU 87.73
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [4] IoU 72.31
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [5] IoU 65.47
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [6] IoU 89.28
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [7] IoU 82.84
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [8] IoU 90.63
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [9] IoU 0.91
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [10] IoU 86.49
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [11] IoU 49.38
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [12] IoU 84.21
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [13] IoU 84.02
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [14] IoU 81.87
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [15] IoU 77.49
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [16] IoU 48.00
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [17] IoU 84.08
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [18] IoU 36.32
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [19] IoU 84.62
+[08/31/2022 15:46:45][INFO] -  [Test] -  class [20] IoU 28.24
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [0] IoU 91.43
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [1] IoU 83.28
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [2] IoU 4.51
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [3] IoU 88.84
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [4] IoU 72.58
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [5] IoU 67.07
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [6] IoU 88.27
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [7] IoU 79.19
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [8] IoU 90.28
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [9] IoU 0.87
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [10] IoU 89.53
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [11] IoU 50.06
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [12] IoU 86.30
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [13] IoU 87.45
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [14] IoU 78.75
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [15] IoU 76.09
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [16] IoU 50.52
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [17] IoU 81.98
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [18] IoU 38.08
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [19] IoU 84.02
+[08/31/2022 15:47:09][INFO] -  [Test] -  class [20] IoU 34.06
+[08/31/2022 15:47:12][INFO] -  <<Test>> - Epoch: 15.  MIoU: 67.34/67.77.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 15:50:05][INFO] - Epoch/Iter [80: 16/ 81].  AvgHard:0.681.  Sup:0.008(0.013)  Uns:0.077(0.142)  Pseudo:0.940(0.936)  Time:2.08  LR:0.00082
+[08/31/2022 15:53:01][INFO] - Epoch/Iter [80: 16/162].  AvgHard:0.781.  Sup:0.008(0.012)  Uns:0.078(0.109)  Pseudo:0.882(0.926)  Time:2.20  LR:0.00082
+[08/31/2022 15:55:55][INFO] - Epoch/Iter [80: 16/243].  AvgHard:0.913.  Sup:0.012(0.011)  Uns:0.149(0.164)  Pseudo:0.945(0.929)  Time:2.12  LR:0.00081
+[08/31/2022 15:58:50][INFO] - Epoch/Iter [80: 16/324].  AvgHard:0.804.  Sup:0.013(0.012)  Uns:0.056(0.143)  Pseudo:0.968(0.936)  Time:2.19  LR:0.00081
+[08/31/2022 16:01:41][INFO] - Epoch/Iter [80: 16/405].  AvgHard:0.77.  Sup:0.014(0.011)  Uns:0.127(0.107)  Pseudo:0.902(0.921)  Time:2.08  LR:0.00081
+[08/31/2022 16:04:33][INFO] - Epoch/Iter [80: 16/486].  AvgHard:0.908.  Sup:0.012(0.013)  Uns:0.107(0.158)  Pseudo:0.944(0.920)  Time:2.10  LR:0.00081
+[08/31/2022 16:07:26][INFO] - Epoch/Iter [80: 16/567].  AvgHard:0.827.  Sup:0.008(0.012)  Uns:0.123(0.099)  Pseudo:0.913(0.927)  Time:2.11  LR:0.00081
+[08/31/2022 16:10:30][INFO] - Epoch/Iter [80: 16/654].  AvgHard:0.816.  Sup:0.013(0.012)  Uns:0.089(0.094)  Pseudo:0.955(0.935)  Time:2.14  LR:0.00081
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [0] IoU 91.02
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [1] IoU 81.99
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [2] IoU 3.77
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [3] IoU 87.69
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [4] IoU 64.19
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [5] IoU 65.56
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [6] IoU 87.69
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [7] IoU 71.03
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [8] IoU 89.46
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [9] IoU 0.79
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [10] IoU 91.35
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [11] IoU 41.76
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [12] IoU 84.54
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [13] IoU 87.58
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [14] IoU 75.23
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [15] IoU 70.81
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [16] IoU 51.68
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [17] IoU 84.19
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [18] IoU 38.57
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [19] IoU 81.12
+[08/31/2022 16:10:55][INFO] -  [Test] -  class [20] IoU 33.37
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [0] IoU 91.57
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [1] IoU 85.40
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [2] IoU 4.32
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [3] IoU 88.86
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [4] IoU 69.80
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [5] IoU 67.81
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [6] IoU 89.18
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [7] IoU 78.47
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [8] IoU 91.03
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [9] IoU 0.83
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [10] IoU 90.81
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [11] IoU 48.35
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [12] IoU 86.95
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [13] IoU 88.25
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [14] IoU 79.15
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [15] IoU 75.24
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [16] IoU 50.05
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [17] IoU 85.07
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [18] IoU 39.24
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [19] IoU 83.84
+[08/31/2022 16:11:20][INFO] -  [Test] -  class [20] IoU 34.03
+[08/31/2022 16:11:22][INFO] -  <<Test>> - Epoch: 16.  MIoU: 65.88/68.01.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 16:14:16][INFO] - Epoch/Iter [80: 17/ 81].  AvgHard:0.855.  Sup:0.011(0.011)  Uns:0.117(0.126)  Pseudo:0.923(0.931)  Time:2.12  LR:0.00081
+[08/31/2022 16:17:08][INFO] - Epoch/Iter [80: 17/162].  AvgHard:0.836.  Sup:0.016(0.013)  Uns:0.103(0.154)  Pseudo:0.955(0.939)  Time:2.15  LR:0.00080
+[08/31/2022 16:20:00][INFO] - Epoch/Iter [80: 17/243].  AvgHard:0.799.  Sup:0.011(0.012)  Uns:0.167(0.111)  Pseudo:0.919(0.931)  Time:2.16  LR:0.00080
+[08/31/2022 16:22:50][INFO] - Epoch/Iter [80: 17/324].  AvgHard:0.858.  Sup:0.009(0.012)  Uns:0.074(0.117)  Pseudo:0.904(0.932)  Time:2.12  LR:0.00080
+[08/31/2022 16:25:42][INFO] - Epoch/Iter [80: 17/405].  AvgHard:0.78.  Sup:0.010(0.011)  Uns:0.107(0.111)  Pseudo:0.898(0.928)  Time:2.15  LR:0.00080
+[08/31/2022 16:28:34][INFO] - Epoch/Iter [80: 17/486].  AvgHard:0.849.  Sup:0.009(0.012)  Uns:0.074(0.102)  Pseudo:0.915(0.933)  Time:2.10  LR:0.00080
+[08/31/2022 16:31:26][INFO] - Epoch/Iter [80: 17/567].  AvgHard:0.8.  Sup:0.013(0.012)  Uns:0.575(0.154)  Pseudo:0.959(0.916)  Time:2.12  LR:0.00080
+[08/31/2022 16:34:33][INFO] - Epoch/Iter [80: 17/654].  AvgHard:0.868.  Sup:0.012(0.014)  Uns:0.066(0.126)  Pseudo:0.967(0.929)  Time:2.19  LR:0.00080
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [0] IoU 91.35
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [1] IoU 83.42
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [2] IoU 3.08
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [3] IoU 87.87
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [4] IoU 66.53
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [5] IoU 70.02
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [6] IoU 87.14
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [7] IoU 79.35
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [8] IoU 89.46
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [9] IoU 1.44
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [10] IoU 88.25
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [11] IoU 46.39
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [12] IoU 83.61
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [13] IoU 85.59
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [14] IoU 79.34
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [15] IoU 72.68
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [16] IoU 48.50
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [17] IoU 86.27
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [18] IoU 38.94
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [19] IoU 81.56
+[08/31/2022 16:34:57][INFO] -  [Test] -  class [20] IoU 30.38
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [0] IoU 91.70
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [1] IoU 84.21
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [2] IoU 3.40
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [3] IoU 89.01
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [4] IoU 68.31
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [5] IoU 71.89
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [6] IoU 89.19
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [7] IoU 79.88
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [8] IoU 91.70
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [9] IoU 1.01
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [10] IoU 91.48
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [11] IoU 48.40
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [12] IoU 85.99
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [13] IoU 86.92
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [14] IoU 77.54
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [15] IoU 75.52
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [16] IoU 49.77
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [17] IoU 86.92
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [18] IoU 38.56
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [19] IoU 82.74
+[08/31/2022 16:35:23][INFO] -  [Test] -  class [20] IoU 32.39
+[08/31/2022 16:35:25][INFO] -  <<Test>> - Epoch: 17.  MIoU: 66.72/67.93.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 16:38:19][INFO] - Epoch/Iter [80: 18/ 81].  AvgHard:0.892.  Sup:0.016(0.012)  Uns:0.109(0.131)  Pseudo:0.927(0.929)  Time:2.13  LR:0.00079
+[08/31/2022 16:41:10][INFO] - Epoch/Iter [80: 18/162].  AvgHard:0.808.  Sup:0.011(0.012)  Uns:0.053(0.105)  Pseudo:0.934(0.936)  Time:2.08  LR:0.00079
+[08/31/2022 16:44:02][INFO] - Epoch/Iter [80: 18/243].  AvgHard:0.909.  Sup:0.011(0.013)  Uns:0.063(0.139)  Pseudo:0.959(0.925)  Time:2.09  LR:0.00079
+[08/31/2022 16:46:53][INFO] - Epoch/Iter [80: 18/324].  AvgHard:0.841.  Sup:0.014(0.012)  Uns:0.117(0.124)  Pseudo:0.894(0.926)  Time:2.14  LR:0.00079
+[08/31/2022 16:49:45][INFO] - Epoch/Iter [80: 18/405].  AvgHard:0.873.  Sup:0.011(0.013)  Uns:0.051(0.102)  Pseudo:0.938(0.931)  Time:2.10  LR:0.00079
+[08/31/2022 16:52:36][INFO] - Epoch/Iter [80: 18/486].  AvgHard:0.883.  Sup:0.011(0.012)  Uns:0.151(0.150)  Pseudo:0.932(0.933)  Time:2.09  LR:0.00079
+[08/31/2022 16:55:28][INFO] - Epoch/Iter [80: 18/567].  AvgHard:0.911.  Sup:0.010(0.012)  Uns:0.199(0.138)  Pseudo:0.934(0.927)  Time:2.09  LR:0.00079
+[08/31/2022 16:58:32][INFO] - Epoch/Iter [80: 18/654].  AvgHard:0.943.  Sup:0.009(0.010)  Uns:0.084(0.130)  Pseudo:0.960(0.926)  Time:2.13  LR:0.00078
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [0] IoU 91.70
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [1] IoU 87.16
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [2] IoU 3.07
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [3] IoU 86.06
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [4] IoU 60.66
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [5] IoU 69.44
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [6] IoU 89.48
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [7] IoU 79.77
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [8] IoU 90.13
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [9] IoU 1.36
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [10] IoU 89.47
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [11] IoU 46.18
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [12] IoU 86.38
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [13] IoU 84.66
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [14] IoU 78.28
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [15] IoU 74.90
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [16] IoU 53.25
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [17] IoU 76.83
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [18] IoU 40.65
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [19] IoU 83.55
+[08/31/2022 16:58:56][INFO] -  [Test] -  class [20] IoU 25.65
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [0] IoU 91.54
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [1] IoU 84.71
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [2] IoU 3.28
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [3] IoU 88.22
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [4] IoU 68.95
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [5] IoU 71.32
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [6] IoU 89.62
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [7] IoU 79.30
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [8] IoU 90.52
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [9] IoU 1.84
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [10] IoU 89.87
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [11] IoU 45.16
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [12] IoU 86.36
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [13] IoU 86.45
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [14] IoU 77.62
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [15] IoU 73.84
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [16] IoU 49.07
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [17] IoU 84.33
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [18] IoU 39.00
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [19] IoU 82.93
+[08/31/2022 16:59:22][INFO] -  [Test] -  class [20] IoU 26.96
+[08/31/2022 16:59:24][INFO] -  <<Test>> - Epoch: 18.  MIoU: 66.60/67.18.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 17:02:17][INFO] - Epoch/Iter [80: 19/ 81].  AvgHard:0.894.  Sup:0.010(0.012)  Uns:0.081(0.122)  Pseudo:0.946(0.939)  Time:2.09  LR:0.00078
+[08/31/2022 17:05:09][INFO] - Epoch/Iter [80: 19/162].  AvgHard:0.892.  Sup:0.011(0.012)  Uns:0.152(0.120)  Pseudo:0.927(0.940)  Time:2.10  LR:0.00078
+[08/31/2022 17:08:02][INFO] - Epoch/Iter [80: 19/243].  AvgHard:0.903.  Sup:0.015(0.013)  Uns:0.087(0.169)  Pseudo:0.954(0.933)  Time:2.08  LR:0.00078
+[08/31/2022 17:10:54][INFO] - Epoch/Iter [80: 19/324].  AvgHard:0.916.  Sup:0.015(0.011)  Uns:0.419(0.113)  Pseudo:0.950(0.935)  Time:2.13  LR:0.00078
+[08/31/2022 17:13:47][INFO] - Epoch/Iter [80: 19/405].  AvgHard:0.798.  Sup:0.008(0.011)  Uns:0.161(0.114)  Pseudo:0.935(0.932)  Time:2.18  LR:0.00078
+[08/31/2022 17:16:40][INFO] - Epoch/Iter [80: 19/486].  AvgHard:0.827.  Sup:0.007(0.011)  Uns:0.144(0.114)  Pseudo:0.961(0.917)  Time:2.09  LR:0.00077
+[08/31/2022 17:19:30][INFO] - Epoch/Iter [80: 19/567].  AvgHard:0.788.  Sup:0.018(0.011)  Uns:0.173(0.109)  Pseudo:0.921(0.932)  Time:2.14  LR:0.00077
+[08/31/2022 17:22:36][INFO] - Epoch/Iter [80: 19/654].  AvgHard:0.809.  Sup:0.011(0.012)  Uns:0.059(0.121)  Pseudo:0.896(0.932)  Time:2.14  LR:0.00077
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [0] IoU 91.32
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [1] IoU 81.45
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [2] IoU 3.91
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [3] IoU 80.68
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [4] IoU 70.31
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [5] IoU 66.72
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [6] IoU 89.34
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [7] IoU 79.86
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [8] IoU 88.31
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [9] IoU 2.71
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [10] IoU 85.46
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [11] IoU 40.27
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [12] IoU 83.34
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [13] IoU 83.18
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [14] IoU 76.41
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [15] IoU 73.41
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [16] IoU 44.09
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [17] IoU 80.02
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [18] IoU 35.72
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [19] IoU 84.41
+[08/31/2022 17:23:01][INFO] -  [Test] -  class [20] IoU 32.11
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [0] IoU 91.50
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [1] IoU 82.53
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [2] IoU 3.29
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [3] IoU 86.98
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [4] IoU 67.87
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [5] IoU 69.47
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [6] IoU 90.88
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [7] IoU 80.13
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [8] IoU 90.38
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [9] IoU 2.53
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [10] IoU 90.78
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [11] IoU 45.85
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [12] IoU 85.89
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [13] IoU 87.36
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [14] IoU 79.10
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [15] IoU 74.09
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [16] IoU 47.41
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [17] IoU 84.82
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [18] IoU 38.33
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [19] IoU 83.20
+[08/31/2022 17:23:27][INFO] -  [Test] -  class [20] IoU 25.98
+[08/31/2022 17:23:29][INFO] -  <<Test>> - Epoch: 19.  MIoU: 65.38/67.07.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 17:26:23][INFO] - Epoch/Iter [80: 20/ 81].  AvgHard:0.877.  Sup:0.017(0.012)  Uns:0.121(0.096)  Pseudo:0.956(0.936)  Time:2.10  LR:0.00077
+[08/31/2022 17:29:12][INFO] - Epoch/Iter [80: 20/162].  AvgHard:0.878.  Sup:0.014(0.012)  Uns:0.062(0.103)  Pseudo:0.937(0.935)  Time:2.10  LR:0.00077
+[08/31/2022 17:32:02][INFO] - Epoch/Iter [80: 20/243].  AvgHard:0.789.  Sup:0.010(0.013)  Uns:0.240(0.204)  Pseudo:0.932(0.931)  Time:2.10  LR:0.00077
+[08/31/2022 17:34:52][INFO] - Epoch/Iter [80: 20/324].  AvgHard:0.868.  Sup:0.009(0.012)  Uns:0.131(0.111)  Pseudo:0.935(0.924)  Time:2.09  LR:0.00077
+[08/31/2022 17:37:43][INFO] - Epoch/Iter [80: 20/405].  AvgHard:0.874.  Sup:0.011(0.013)  Uns:0.122(0.100)  Pseudo:0.929(0.932)  Time:2.10  LR:0.00076
+[08/31/2022 17:40:34][INFO] - Epoch/Iter [80: 20/486].  AvgHard:0.941.  Sup:0.010(0.010)  Uns:0.048(0.119)  Pseudo:0.967(0.942)  Time:2.11  LR:0.00076
+[08/31/2022 17:43:23][INFO] - Epoch/Iter [80: 20/567].  AvgHard:0.762.  Sup:0.009(0.011)  Uns:0.412(0.120)  Pseudo:0.932(0.924)  Time:2.10  LR:0.00076
+[08/31/2022 17:46:27][INFO] - Epoch/Iter [80: 20/654].  AvgHard:0.874.  Sup:0.011(0.013)  Uns:0.057(0.116)  Pseudo:0.934(0.924)  Time:2.10  LR:0.00076
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [0] IoU 90.77
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [1] IoU 85.87
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [2] IoU 4.66
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [3] IoU 86.07
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [4] IoU 63.88
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [5] IoU 64.43
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [6] IoU 86.12
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [7] IoU 73.63
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [8] IoU 88.59
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [9] IoU 1.07
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [10] IoU 87.49
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [11] IoU 32.84
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [12] IoU 83.60
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [13] IoU 83.57
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [14] IoU 74.58
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [15] IoU 71.85
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [16] IoU 49.10
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [17] IoU 83.96
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [18] IoU 36.59
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [19] IoU 84.73
+[08/31/2022 17:46:53][INFO] -  [Test] -  class [20] IoU 22.60
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [0] IoU 91.48
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [1] IoU 83.92
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [2] IoU 3.65
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [3] IoU 86.29
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [4] IoU 70.30
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [5] IoU 66.61
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [6] IoU 91.62
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [7] IoU 79.02
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [8] IoU 89.21
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [9] IoU 1.92
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [10] IoU 91.39
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [11] IoU 38.05
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [12] IoU 86.93
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [13] IoU 87.08
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [14] IoU 77.81
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [15] IoU 71.81
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [16] IoU 46.19
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [17] IoU 82.17
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [18] IoU 38.06
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [19] IoU 84.02
+[08/31/2022 17:47:18][INFO] -  [Test] -  class [20] IoU 23.78
+[08/31/2022 17:47:20][INFO] -  <<Test>> - Epoch: 20.  MIoU: 64.57/66.25.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 17:50:12][INFO] - Epoch/Iter [80: 21/ 81].  AvgHard:0.904.  Sup:0.010(0.011)  Uns:0.260(0.146)  Pseudo:0.956(0.925)  Time:2.08  LR:0.00076
+[08/31/2022 17:53:02][INFO] - Epoch/Iter [80: 21/162].  AvgHard:0.907.  Sup:0.020(0.013)  Uns:0.186(0.122)  Pseudo:0.941(0.928)  Time:2.10  LR:0.00076
+[08/31/2022 17:55:53][INFO] - Epoch/Iter [80: 21/243].  AvgHard:0.722.  Sup:0.010(0.012)  Uns:0.096(0.152)  Pseudo:0.944(0.930)  Time:2.10  LR:0.00076
+[08/31/2022 17:58:43][INFO] - Epoch/Iter [80: 21/324].  AvgHard:0.85.  Sup:0.010(0.011)  Uns:0.064(0.136)  Pseudo:0.948(0.925)  Time:2.10  LR:0.00075
+[08/31/2022 18:01:34][INFO] - Epoch/Iter [80: 21/405].  AvgHard:0.815.  Sup:0.015(0.010)  Uns:0.147(0.118)  Pseudo:0.883(0.929)  Time:2.12  LR:0.00075
+[08/31/2022 18:04:23][INFO] - Epoch/Iter [80: 21/486].  AvgHard:0.823.  Sup:0.008(0.012)  Uns:0.068(0.125)  Pseudo:0.945(0.941)  Time:2.09  LR:0.00075
+[08/31/2022 18:07:13][INFO] - Epoch/Iter [80: 21/567].  AvgHard:0.894.  Sup:0.010(0.011)  Uns:0.077(0.125)  Pseudo:0.925(0.936)  Time:2.09  LR:0.00075
+[08/31/2022 18:10:16][INFO] - Epoch/Iter [80: 21/654].  AvgHard:0.801.  Sup:0.018(0.012)  Uns:0.065(0.113)  Pseudo:0.949(0.942)  Time:2.10  LR:0.00075
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [0] IoU 91.26
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [1] IoU 88.89
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [2] IoU 2.49
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [3] IoU 87.11
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [4] IoU 70.22
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [5] IoU 68.26
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [6] IoU 90.92
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [7] IoU 73.80
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [8] IoU 87.24
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [9] IoU 2.74
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [10] IoU 88.44
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [11] IoU 36.90
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [12] IoU 84.54
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [13] IoU 87.17
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [14] IoU 78.35
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [15] IoU 70.15
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [16] IoU 50.33
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [17] IoU 85.07
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [18] IoU 37.52
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [19] IoU 87.42
+[08/31/2022 18:10:42][INFO] -  [Test] -  class [20] IoU 12.83
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [0] IoU 91.57
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [1] IoU 89.04
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [2] IoU 2.98
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [3] IoU 88.27
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [4] IoU 69.82
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [5] IoU 67.18
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [6] IoU 91.43
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [7] IoU 76.52
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [8] IoU 89.30
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [9] IoU 2.45
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [10] IoU 89.92
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [11] IoU 39.66
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [12] IoU 86.75
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [13] IoU 86.28
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [14] IoU 78.05
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [15] IoU 71.12
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [16] IoU 52.75
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [17] IoU 85.67
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [18] IoU 38.95
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [19] IoU 85.31
+[08/31/2022 18:11:07][INFO] -  [Test] -  class [20] IoU 18.71
+[08/31/2022 18:11:09][INFO] -  <<Test>> - Epoch: 21.  MIoU: 65.79/66.75.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 18:14:02][INFO] - Epoch/Iter [80: 22/ 81].  AvgHard:0.848.  Sup:0.023(0.012)  Uns:0.219(0.172)  Pseudo:0.917(0.939)  Time:2.11  LR:0.00075
+[08/31/2022 18:16:52][INFO] - Epoch/Iter [80: 22/162].  AvgHard:0.823.  Sup:0.009(0.010)  Uns:0.082(0.156)  Pseudo:0.936(0.930)  Time:2.11  LR:0.00075
+[08/31/2022 18:19:42][INFO] - Epoch/Iter [80: 22/243].  AvgHard:0.746.  Sup:0.011(0.011)  Uns:0.039(0.101)  Pseudo:0.919(0.930)  Time:2.11  LR:0.00074
+[08/31/2022 18:22:32][INFO] - Epoch/Iter [80: 22/324].  AvgHard:0.875.  Sup:0.008(0.009)  Uns:0.150(0.113)  Pseudo:0.933(0.930)  Time:2.10  LR:0.00074
+[08/31/2022 18:25:23][INFO] - Epoch/Iter [80: 22/405].  AvgHard:0.859.  Sup:0.014(0.013)  Uns:0.077(0.139)  Pseudo:0.940(0.941)  Time:2.10  LR:0.00074
+[08/31/2022 18:28:14][INFO] - Epoch/Iter [80: 22/486].  AvgHard:0.833.  Sup:0.008(0.010)  Uns:0.197(0.131)  Pseudo:0.956(0.932)  Time:2.10  LR:0.00074
+[08/31/2022 18:31:05][INFO] - Epoch/Iter [80: 22/567].  AvgHard:0.876.  Sup:0.011(0.010)  Uns:0.102(0.143)  Pseudo:0.949(0.943)  Time:2.10  LR:0.00074
+[08/31/2022 18:34:08][INFO] - Epoch/Iter [80: 22/654].  AvgHard:0.864.  Sup:0.010(0.011)  Uns:0.066(0.102)  Pseudo:0.959(0.936)  Time:2.14  LR:0.00074
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [0] IoU 90.73
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [1] IoU 81.20
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [2] IoU 3.07
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [3] IoU 88.14
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [4] IoU 72.63
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [5] IoU 61.73
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [6] IoU 89.54
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [7] IoU 80.26
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [8] IoU 87.91
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [9] IoU 1.94
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [10] IoU 90.92
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [11] IoU 34.96
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [12] IoU 86.58
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [13] IoU 87.45
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [14] IoU 78.62
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [15] IoU 67.91
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [16] IoU 44.33
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [17] IoU 86.63
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [18] IoU 35.34
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [19] IoU 85.21
+[08/31/2022 18:34:33][INFO] -  [Test] -  class [20] IoU 21.41
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [0] IoU 91.40
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [1] IoU 87.32
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [2] IoU 3.55
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [3] IoU 87.73
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [4] IoU 70.99
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [5] IoU 65.56
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [6] IoU 90.05
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [7] IoU 77.37
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [8] IoU 90.12
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [9] IoU 2.57
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [10] IoU 91.56
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [11] IoU 37.70
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [12] IoU 87.66
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [13] IoU 87.72
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [14] IoU 79.48
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [15] IoU 70.36
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [16] IoU 48.05
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [17] IoU 86.02
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [18] IoU 38.38
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [19] IoU 85.79
+[08/31/2022 18:34:58][INFO] -  [Test] -  class [20] IoU 19.71
+[08/31/2022 18:35:01][INFO] -  <<Test>> - Epoch: 22.  MIoU: 65.55/66.62.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 18:37:55][INFO] - Epoch/Iter [80: 23/ 81].  AvgHard:0.886.  Sup:0.010(0.011)  Uns:0.059(0.162)  Pseudo:0.931(0.930)  Time:2.12  LR:0.00074
+[08/31/2022 18:40:46][INFO] - Epoch/Iter [80: 23/162].  AvgHard:0.763.  Sup:0.008(0.014)  Uns:0.073(0.137)  Pseudo:0.935(0.928)  Time:2.10  LR:0.00073
+[08/31/2022 18:43:37][INFO] - Epoch/Iter [80: 23/243].  AvgHard:0.867.  Sup:0.014(0.011)  Uns:0.134(0.114)  Pseudo:0.916(0.931)  Time:2.11  LR:0.00073
+[08/31/2022 18:46:28][INFO] - Epoch/Iter [80: 23/324].  AvgHard:0.747.  Sup:0.010(0.010)  Uns:0.062(0.131)  Pseudo:0.965(0.935)  Time:2.10  LR:0.00073
+[08/31/2022 18:49:19][INFO] - Epoch/Iter [80: 23/405].  AvgHard:0.841.  Sup:0.011(0.011)  Uns:0.098(0.116)  Pseudo:0.907(0.941)  Time:2.13  LR:0.00073
+[08/31/2022 18:52:10][INFO] - Epoch/Iter [80: 23/486].  AvgHard:0.823.  Sup:0.010(0.011)  Uns:0.056(0.152)  Pseudo:0.939(0.933)  Time:2.12  LR:0.00073
+[08/31/2022 18:55:01][INFO] - Epoch/Iter [80: 23/567].  AvgHard:0.902.  Sup:0.018(0.012)  Uns:0.071(0.093)  Pseudo:0.945(0.943)  Time:2.09  LR:0.00073
+[08/31/2022 18:58:04][INFO] - Epoch/Iter [80: 23/654].  AvgHard:0.841.  Sup:0.006(0.010)  Uns:0.060(0.099)  Pseudo:0.947(0.933)  Time:2.10  LR:0.00073
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [0] IoU 91.67
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [1] IoU 86.65
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [2] IoU 3.44
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [3] IoU 88.84
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [4] IoU 69.45
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [5] IoU 69.62
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [6] IoU 90.08
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [7] IoU 79.91
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [8] IoU 90.73
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [9] IoU 1.95
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [10] IoU 90.93
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [11] IoU 26.91
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [12] IoU 86.10
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [13] IoU 87.00
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [14] IoU 79.99
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [15] IoU 69.59
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [16] IoU 51.22
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [17] IoU 86.47
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [18] IoU 38.77
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [19] IoU 82.70
+[08/31/2022 18:58:29][INFO] -  [Test] -  class [20] IoU 24.09
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [0] IoU 91.32
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [1] IoU 86.27
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [2] IoU 4.26
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [3] IoU 88.16
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [4] IoU 70.31
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [5] IoU 68.10
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [6] IoU 89.77
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [7] IoU 78.44
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [8] IoU 89.98
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [9] IoU 2.18
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [10] IoU 91.92
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [11] IoU 31.00
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [12] IoU 86.53
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [13] IoU 87.29
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [14] IoU 78.57
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [15] IoU 68.74
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [16] IoU 50.90
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [17] IoU 87.15
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [18] IoU 37.35
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [19] IoU 83.59
+[08/31/2022 18:58:54][INFO] -  [Test] -  class [20] IoU 20.23
+[08/31/2022 18:58:57][INFO] -  <<Test>> - Epoch: 23.  MIoU: 66.48/66.29.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 19:01:50][INFO] - Epoch/Iter [80: 24/ 81].  AvgHard:0.762.  Sup:0.014(0.014)  Uns:0.175(0.137)  Pseudo:0.914(0.931)  Time:2.11  LR:0.00072
+[08/31/2022 19:04:41][INFO] - Epoch/Iter [80: 24/162].  AvgHard:0.88.  Sup:0.021(0.012)  Uns:0.307(0.125)  Pseudo:0.917(0.941)  Time:2.10  LR:0.00072
+[08/31/2022 19:07:32][INFO] - Epoch/Iter [80: 24/243].  AvgHard:0.932.  Sup:0.008(0.011)  Uns:0.057(0.123)  Pseudo:0.952(0.946)  Time:2.11  LR:0.00072
+[08/31/2022 19:10:23][INFO] - Epoch/Iter [80: 24/324].  AvgHard:0.891.  Sup:0.013(0.010)  Uns:0.137(0.113)  Pseudo:0.964(0.937)  Time:2.10  LR:0.00072
+[08/31/2022 19:13:14][INFO] - Epoch/Iter [80: 24/405].  AvgHard:0.907.  Sup:0.019(0.010)  Uns:0.051(0.090)  Pseudo:0.955(0.941)  Time:2.11  LR:0.00072
+[08/31/2022 19:16:04][INFO] - Epoch/Iter [80: 24/486].  AvgHard:0.865.  Sup:0.010(0.011)  Uns:0.122(0.095)  Pseudo:0.927(0.930)  Time:2.10  LR:0.00072
+[08/31/2022 19:18:55][INFO] - Epoch/Iter [80: 24/567].  AvgHard:0.825.  Sup:0.016(0.010)  Uns:0.265(0.110)  Pseudo:0.899(0.936)  Time:2.13  LR:0.00072
+[08/31/2022 19:21:58][INFO] - Epoch/Iter [80: 24/654].  AvgHard:0.863.  Sup:0.018(0.010)  Uns:0.135(0.135)  Pseudo:0.940(0.929)  Time:2.10  LR:0.00071
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [0] IoU 91.40
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [1] IoU 87.22
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [2] IoU 2.39
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [3] IoU 87.39
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [4] IoU 66.13
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [5] IoU 71.49
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [6] IoU 90.08
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [7] IoU 75.79
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [8] IoU 88.37
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [9] IoU 2.28
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [10] IoU 90.92
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [11] IoU 26.26
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [12] IoU 83.57
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [13] IoU 87.95
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [14] IoU 81.18
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [15] IoU 67.28
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [16] IoU 57.51
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [17] IoU 77.17
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [18] IoU 38.32
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [19] IoU 80.50
+[08/31/2022 19:22:24][INFO] -  [Test] -  class [20] IoU 19.67
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [0] IoU 91.61
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [1] IoU 87.43
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [2] IoU 2.90
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [3] IoU 87.19
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [4] IoU 67.10
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [5] IoU 69.78
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [6] IoU 88.70
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [7] IoU 77.48
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [8] IoU 89.58
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [9] IoU 2.42
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [10] IoU 92.80
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [11] IoU 27.83
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [12] IoU 85.23
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [13] IoU 89.06
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [14] IoU 80.84
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [15] IoU 67.44
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [16] IoU 54.11
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [17] IoU 82.65
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [18] IoU 39.22
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [19] IoU 80.61
+[08/31/2022 19:22:49][INFO] -  [Test] -  class [20] IoU 21.56
+[08/31/2022 19:22:52][INFO] -  <<Test>> - Epoch: 24.  MIoU: 65.38/65.98.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 19:25:45][INFO] - Epoch/Iter [80: 25/ 81].  AvgHard:0.875.  Sup:0.010(0.010)  Uns:0.063(0.091)  Pseudo:0.962(0.950)  Time:2.10  LR:0.00071
+[08/31/2022 19:28:36][INFO] - Epoch/Iter [80: 25/162].  AvgHard:0.932.  Sup:0.012(0.010)  Uns:0.067(0.087)  Pseudo:0.957(0.937)  Time:2.10  LR:0.00071
+[08/31/2022 19:31:27][INFO] - Epoch/Iter [80: 25/243].  AvgHard:0.927.  Sup:0.012(0.012)  Uns:0.040(0.091)  Pseudo:0.953(0.943)  Time:2.10  LR:0.00071
+[08/31/2022 19:34:17][INFO] - Epoch/Iter [80: 25/324].  AvgHard:0.74.  Sup:0.011(0.010)  Uns:0.051(0.099)  Pseudo:0.949(0.940)  Time:2.12  LR:0.00071
+[08/31/2022 19:37:07][INFO] - Epoch/Iter [80: 25/405].  AvgHard:0.816.  Sup:0.011(0.010)  Uns:0.081(0.125)  Pseudo:0.930(0.934)  Time:2.10  LR:0.00071
+[08/31/2022 19:39:57][INFO] - Epoch/Iter [80: 25/486].  AvgHard:0.839.  Sup:0.006(0.010)  Uns:0.124(0.114)  Pseudo:0.954(0.945)  Time:2.10  LR:0.00071
+[08/31/2022 19:42:48][INFO] - Epoch/Iter [80: 25/567].  AvgHard:0.836.  Sup:0.008(0.010)  Uns:0.056(0.117)  Pseudo:0.904(0.930)  Time:2.10  LR:0.00070
+[08/31/2022 19:45:51][INFO] - Epoch/Iter [80: 25/654].  AvgHard:0.827.  Sup:0.008(0.010)  Uns:0.081(0.111)  Pseudo:0.947(0.931)  Time:2.11  LR:0.00070
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [0] IoU 91.44
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [1] IoU 88.82
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [2] IoU 2.70
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [3] IoU 89.65
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [4] IoU 69.34
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [5] IoU 69.16
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [6] IoU 88.83
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [7] IoU 72.64
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [8] IoU 88.86
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [9] IoU 2.21
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [10] IoU 91.40
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [11] IoU 25.13
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [12] IoU 85.33
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [13] IoU 88.13
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [14] IoU 77.96
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [15] IoU 67.03
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [16] IoU 54.86
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [17] IoU 85.58
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [18] IoU 37.02
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [19] IoU 84.83
+[08/31/2022 19:46:16][INFO] -  [Test] -  class [20] IoU 20.78
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [0] IoU 91.54
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [1] IoU 88.39
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [2] IoU 2.84
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [3] IoU 89.02
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [4] IoU 67.80
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [5] IoU 70.59
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [6] IoU 89.10
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [7] IoU 77.76
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [8] IoU 89.70
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [9] IoU 2.56
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [10] IoU 92.83
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [11] IoU 28.44
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [12] IoU 86.83
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [13] IoU 88.76
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [14] IoU 78.74
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [15] IoU 68.72
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [16] IoU 53.00
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [17] IoU 84.75
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [18] IoU 36.67
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [19] IoU 83.05
+[08/31/2022 19:46:41][INFO] -  [Test] -  class [20] IoU 20.80
+[08/31/2022 19:46:43][INFO] -  <<Test>> - Epoch: 25.  MIoU: 65.80/66.28.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 19:49:37][INFO] - Epoch/Iter [80: 26/ 81].  AvgHard:0.945.  Sup:0.006(0.010)  Uns:0.070(0.093)  Pseudo:0.964(0.943)  Time:2.11  LR:0.00070
+[08/31/2022 19:52:28][INFO] - Epoch/Iter [80: 26/162].  AvgHard:0.841.  Sup:0.021(0.012)  Uns:0.115(0.117)  Pseudo:0.945(0.937)  Time:2.09  LR:0.00070
+[08/31/2022 19:55:18][INFO] - Epoch/Iter [80: 26/243].  AvgHard:0.913.  Sup:0.009(0.009)  Uns:0.469(0.127)  Pseudo:0.927(0.946)  Time:2.10  LR:0.00070
+[08/31/2022 19:58:09][INFO] - Epoch/Iter [80: 26/324].  AvgHard:0.937.  Sup:0.010(0.008)  Uns:0.092(0.098)  Pseudo:0.967(0.948)  Time:2.09  LR:0.00070
+[08/31/2022 20:00:59][INFO] - Epoch/Iter [80: 26/405].  AvgHard:0.883.  Sup:0.012(0.012)  Uns:0.079(0.118)  Pseudo:0.950(0.937)  Time:2.10  LR:0.00069
+[08/31/2022 20:03:50][INFO] - Epoch/Iter [80: 26/486].  AvgHard:0.836.  Sup:0.015(0.012)  Uns:0.093(0.119)  Pseudo:0.936(0.921)  Time:2.12  LR:0.00069
+[08/31/2022 20:06:41][INFO] - Epoch/Iter [80: 26/567].  AvgHard:0.908.  Sup:0.008(0.011)  Uns:0.140(0.145)  Pseudo:0.953(0.931)  Time:2.11  LR:0.00069
+[08/31/2022 20:09:45][INFO] - Epoch/Iter [80: 26/654].  AvgHard:0.894.  Sup:0.011(0.010)  Uns:0.083(0.086)  Pseudo:0.962(0.937)  Time:2.11  LR:0.00069
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [0] IoU 91.79
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [1] IoU 87.68
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [2] IoU 3.38
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [3] IoU 88.29
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [4] IoU 62.19
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [5] IoU 71.05
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [6] IoU 89.92
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [7] IoU 74.94
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [8] IoU 88.00
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [9] IoU 2.71
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [10] IoU 89.29
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [11] IoU 38.42
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [12] IoU 85.74
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [13] IoU 87.98
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [14] IoU 80.53
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [15] IoU 73.68
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [16] IoU 57.05
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [17] IoU 80.92
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [18] IoU 36.03
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [19] IoU 85.82
+[08/31/2022 20:10:10][INFO] -  [Test] -  class [20] IoU 15.09
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [0] IoU 91.55
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [1] IoU 87.87
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [2] IoU 3.82
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [3] IoU 88.65
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [4] IoU 66.88
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [5] IoU 67.77
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [6] IoU 91.03
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [7] IoU 75.65
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [8] IoU 88.49
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [9] IoU 2.78
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [10] IoU 91.93
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [11] IoU 33.80
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [12] IoU 86.51
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [13] IoU 88.87
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [14] IoU 78.06
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [15] IoU 70.50
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [16] IoU 56.17
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [17] IoU 81.91
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [18] IoU 37.07
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [19] IoU 86.81
+[08/31/2022 20:10:35][INFO] -  [Test] -  class [20] IoU 18.29
+[08/31/2022 20:10:38][INFO] -  <<Test>> - Epoch: 26.  MIoU: 66.21/66.40.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 20:13:31][INFO] - Epoch/Iter [80: 27/ 81].  AvgHard:0.821.  Sup:0.009(0.010)  Uns:0.188(0.132)  Pseudo:0.927(0.934)  Time:2.11  LR:0.00069
+[08/31/2022 20:16:21][INFO] - Epoch/Iter [80: 27/162].  AvgHard:0.818.  Sup:0.009(0.008)  Uns:0.102(0.095)  Pseudo:0.895(0.937)  Time:2.10  LR:0.00069
+[08/31/2022 20:19:11][INFO] - Epoch/Iter [80: 27/243].  AvgHard:0.8.  Sup:0.009(0.022)  Uns:0.027(0.109)  Pseudo:0.914(0.942)  Time:2.10  LR:0.00069
+[08/31/2022 20:22:01][INFO] - Epoch/Iter [80: 27/324].  AvgHard:0.904.  Sup:0.006(0.010)  Uns:0.054(0.080)  Pseudo:0.947(0.951)  Time:2.11  LR:0.00068
+[08/31/2022 20:24:52][INFO] - Epoch/Iter [80: 27/405].  AvgHard:0.806.  Sup:0.011(0.012)  Uns:0.095(0.116)  Pseudo:0.928(0.940)  Time:2.11  LR:0.00068
+[08/31/2022 20:27:42][INFO] - Epoch/Iter [80: 27/486].  AvgHard:0.812.  Sup:0.008(0.010)  Uns:0.085(0.095)  Pseudo:0.971(0.941)  Time:2.11  LR:0.00068
+[08/31/2022 20:30:33][INFO] - Epoch/Iter [80: 27/567].  AvgHard:0.841.  Sup:0.011(0.008)  Uns:0.096(0.113)  Pseudo:0.917(0.938)  Time:2.10  LR:0.00068
+[08/31/2022 20:33:36][INFO] - Epoch/Iter [80: 27/654].  AvgHard:0.854.  Sup:0.009(0.009)  Uns:0.083(0.082)  Pseudo:0.904(0.935)  Time:2.09  LR:0.00068
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [0] IoU 91.47
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [1] IoU 87.04
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [2] IoU 3.50
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [3] IoU 87.62
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [4] IoU 55.00
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [5] IoU 69.47
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [6] IoU 89.54
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [7] IoU 75.14
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [8] IoU 88.44
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [9] IoU 2.97
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [10] IoU 90.09
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [11] IoU 30.26
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [12] IoU 85.70
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [13] IoU 88.51
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [14] IoU 72.58
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [15] IoU 69.70
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [16] IoU 52.68
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [17] IoU 80.40
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [18] IoU 38.83
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [19] IoU 82.70
+[08/31/2022 20:34:02][INFO] -  [Test] -  class [20] IoU 15.55
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [0] IoU 91.52
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [1] IoU 87.43
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [2] IoU 3.50
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [3] IoU 88.29
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [4] IoU 60.28
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [5] IoU 69.91
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [6] IoU 90.96
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [7] IoU 75.10
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [8] IoU 88.98
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [9] IoU 2.86
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [10] IoU 91.35
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [11] IoU 33.74
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [12] IoU 86.39
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [13] IoU 89.78
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [14] IoU 77.48
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [15] IoU 70.24
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [16] IoU 55.63
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [17] IoU 81.22
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [18] IoU 37.53
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [19] IoU 85.72
+[08/31/2022 20:34:27][INFO] -  [Test] -  class [20] IoU 15.78
+[08/31/2022 20:34:29][INFO] -  <<Test>> - Epoch: 27.  MIoU: 64.63/65.89.  [34mBest-STU:68.06/10  [31mBest-EMA: 68.67/6[0m
+[08/31/2022 20:37:22][INFO] - Epoch/Iter [80: 28/ 81].  AvgHard:0.856.  Sup:0.009(0.009)  Uns:0.057(0.104)  Pseudo:0.934(0.934)  Time:2.10  LR:0.00068
+[08/31/2022 20:40:13][INFO] - Epoch/Iter [80: 28/162].  AvgHard:0.912.  Sup:0.014(0.009)  Uns:0.085(0.098)  Pseudo:0.957(0.944)  Time:2.10  LR:0.00068
+[08/31/2022 20:43:03][INFO] - Epoch/Iter [80: 28/243].  AvgHard:0.857.  Sup:0.008(0.009)  Uns:0.082(0.109)  Pseudo:0.904(0.934)  Time:2.11  LR:0.00067
+[08/31/2022 20:45:53][INFO] - Epoch/Iter [80: 28/324].  AvgHard:0.933.  Sup:0.006(0.008)  Uns:0.032(0.085)  Pseudo:0.975(0.942)  Time:2.11  LR:0.00067
+[08/31/2022 20:48:44][INFO] - Epoch/Iter [80: 28/405].  AvgHard:0.81.  Sup:0.017(0.011)  Uns:0.058(0.109)  Pseudo:0.954(0.940)  Time:2.12  LR:0.00067
+[08/31/2022 20:51:34][INFO] - Epoch/Iter [80: 28/486].  AvgHard:0.867.  Sup:0.008(0.010)  Uns:0.088(0.117)  Pseudo:0.955(0.940)  Time:2.10  LR:0.00067
