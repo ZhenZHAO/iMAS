@@ -119,3 +119,7 @@ vim ./single_run.sh
 sh ./single_run.sh
 
 ```
+
+## Acknowledgement
+
+We thank [ST++](https://github.com/LiheYoung/ST-PlusPlus), [CPS](https://github.com/charlesCXK/TorchSemiSeg), and [U<sup>2</sup>PL](https://github.com/Haochen-Wang409/U2PL), for part of their codes, processed datasets, data partitions, and pretrained models.
