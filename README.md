@@ -63,18 +63,20 @@ Please download the Pascal and Cityscapes, and set up the path to them properly 
 - splits: included.
 
 Here is our adopted way，
+
 ```
 ├── ./data
-    ├── splitsall
-    		├── cityscapes
-    		└── pascal
+    ├── splits
+      ├── cityscapes
+      └── pascal
     ├── VOC2012
-    		├── JPEGImages
-    		├── SegmentationClass
-    		└── SegmentationClassAug
+      ├── JPEGImages
+      ├── SegmentationClass
+      └── SegmentationClassAug
     └── cityscapes
-        ├── gtFine
-    		└── leftImg8bit
+      ├── gtFine
+      └── leftImg8bit
+
 ```
 
 
