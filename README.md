@@ -1,6 +1,6 @@
 # iMAS
 
-> Submited CVPR Paper: "Instance-specific and Model-adaptive Supervision for \\ Semi-supervised Semantic Segmentation".
+> "Instance-specific and Model-adaptive Supervision for Semi-supervised Semantic Segmentation".
 
 
 
