@@ -122,6 +122,24 @@ sh ./single_run.sh
 
 ```
 
+## Citation
+
+If you find these projects useful, please consider citing:
+
+```bibtex
+@inproceedings{zhen23imas,
+  title={Instance-specific and Model-adaptive Supervision for Semi-supervised Semantic Segmentation},
+  author={Zhao, Zhen and Long, Sifan and Pi, Jimin and Wang, Jingdong and Zhou, Luping},
+  booktitle={CVPR},
+  year={2023}
+}
+```
+
+We have other relevant semi-supervised semantic segmentation projects:
+- [ST++](https://github.com/LiheYoung/ST-PlusPlus)
+- [Augseg](https://github.com/ZhenZHAO/augseg)
+- [Unimatch](https://github.com/LiheYoung/UniMatch)
+
 ## Acknowledgement
 
 We thank [ST++](https://github.com/LiheYoung/ST-PlusPlus), [CPS](https://github.com/charlesCXK/TorchSemiSeg), and [U<sup>2</sup>PL](https://github.com/Haochen-Wang409/U2PL), for part of their codes, processed datasets, data partitions, and pretrained models.
