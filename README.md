@@ -127,10 +127,11 @@ sh ./single_run.sh
 If you find these projects useful, please consider citing:
 
 ```bibtex
-@inproceedings{zhen23imas,
+@inproceedings{zhao2023instance,
   title={Instance-specific and Model-adaptive Supervision for Semi-supervised Semantic Segmentation},
   author={Zhao, Zhen and Long, Sifan and Pi, Jimin and Wang, Jingdong and Zhou, Luping},
-  booktitle={CVPR},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={23705--23714},
   year={2023}
 }
 ```
